@@ -41,7 +41,7 @@ const NavBar = () => {
                 </li>
                 <li className="nav-item">
                   <a className="nav-link" href="gallery.html">
-                    Gallery
+                    Stories
                   </a>
                 </li>
                 <li className="nav-item">
