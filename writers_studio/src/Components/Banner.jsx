@@ -15,10 +15,10 @@ const Banner = () => {
                      <div class="row">
                         <div class="col-sm-12">
                            <div class="banner_taital">
-                              <h1 class="outstanding_text">Outstanding</h1>
-                              <h1 class="coffee_text">Coffee Shop</h1>
-                              <p class="there_text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, </p>
-                              <div class="learnmore_bt"><a href="#">Learn More</a></div>
+                              <h1 class="outstanding_text">Dream Ink</h1>
+                              <h1 class="coffee_text">Writers Studio</h1>
+                              <p class="there_text"><bold>The Writer’s Studio is an all-in-one,</bold> web-based platform tailored for the unique needs of scriptwriters. Whether you're crafting a screenplay for a movie, scripting a stage play, building dialogue for a video game, or developing episodic content for web series and television—this tool is designed to be your creative companion. </p>
+                              <div class="learnmore_bt"><a href="#">Get Started</a></div>
                            </div>
                         </div>
                      </div>
@@ -48,12 +48,12 @@ const Banner = () => {
                      </div>
                   </div>
                </div>
-               <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
+               {/* <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
                <i class="fa fa-angle-left"></i>
                </a>
                <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
                <i class="fa fa-angle-right"></i>
-               </a>
+               </a> */}
             </div>
          </div>
       </div>

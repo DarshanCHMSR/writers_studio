@@ -278,6 +278,7 @@ button {
 .banner_taital {
     width: 100%;
     float: left;
+    margin-left:280px ;
     padding: 100px 0px;
 }
 
@@ -293,7 +294,7 @@ button {
     width: 100%;
     float: left;
     font-size: 70px;
-    color: #fdfcfa;
+    color: black;
     font-weight: bold;
     padding-bottom: 0px;
 }
@@ -302,8 +303,9 @@ button {
     width: 50%;
     float: left;
     font-size: 16px;
-    color: #fff;
+    color: black;
     margin: 0px;
+    font-weight: 600;
     padding-bottom: 30px;
 }
 
