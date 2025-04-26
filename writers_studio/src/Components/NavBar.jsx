@@ -4,6 +4,7 @@ import "../css/responsive.css";
 import "../css/jquery.mCustomScrollbar.min.css";
 // import "../css/owl.carousel.min.css";
 // import "../css/owl.theme.default.min.css";
+import images from "../images/logo.webp";
 const NavBar = () => {
   return (
     <div>
@@ -12,8 +13,8 @@ const NavBar = () => {
         <div className="container-fluid">
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="logo">
-              <a href="index.html">
-                <img src="../images/logo.png" alt="Logo" />
+              <a href="#">
+                <img src={images} alt="Logo" style={{height:"60px"}} />
               </a>
             </div>
             <button
@@ -30,27 +31,27 @@ const NavBar = () => {
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item active">
-                  <a className="nav-link" href="index.html">
+                  <a className="nav-link" href="#">
                     Home
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="about.html">
+                  <a className="nav-link" href="#">
                     About Us
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="gallery.html">
+                  <a className="nav-link" href="#">
                     Stories
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="services.html">
+                  <a className="nav-link" href="#">
                     Services
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="contact.html">
+                  <a className="nav-link" href="#">
                     Contact Us
                   </a>
                 </li>
