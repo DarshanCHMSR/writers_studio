@@ -1,8 +1,12 @@
 import React from "react";
-import GrandCoffee from "./Components/GrandCoffee";
+import NavBar from "./Components/NavBar";
+import Banner from "./Components/Banner";
 
 function App() {
-  return <GrandCoffee />;
+  return<>
+  <NavBar />
+  <Banner />
+  </> ;
 }
 
 export default App;
