@@ -9,16 +9,15 @@ import Testimonial from "./Components/Testimonial";
 import Services from "./Components/Services";
 import Stories from "./Components/Stories";
 
-function Home() {
+function Homes() {
   return (
-    <>     
-     <Banner />
-  <About />
-  <Stories />
-  <Services />
-  <Testimonial />
-  <ContactUs />
-
+    <>
+      <Banner />
+      <About />
+      <Stories />
+      <Services />
+      <Testimonial />
+      <ContactUs />
     </>
   );
 }
@@ -26,9 +25,9 @@ function Home() {
 function App() {
   return (
     <Router>
-              <NavBar />
+      <NavBar />
       <Routes>
-      <Route path="/" element={<Home />} />
+        <Route path="/" element={<Homes />} />
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
         <Route path="/stories" element={<Stories />} />

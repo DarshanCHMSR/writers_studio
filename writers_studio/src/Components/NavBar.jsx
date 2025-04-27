@@ -4,12 +4,13 @@ import "../css/responsive.css";
 import "../css/jquery.mCustomScrollbar.min.css";
 import "../css/owl.carousel.min.css";
 import images from "../images/logo.webp";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const NavBar = () => {
+  const location = useLocation(); // Track the current location
+
   return (
     <div>
-      {/* Header Section */}
       <div className="header_section">
         <div className="container-fluid">
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -21,8 +22,8 @@ const NavBar = () => {
             <button
               className="navbar-toggler"
               type="button"
-              data-toggle="collapse"
-              data-target="#navbarNav"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
               aria-controls="navbarNav"
               aria-expanded="false"
               aria-label="Toggle navigation"
@@ -31,34 +32,34 @@ const NavBar = () => {
             </button>
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav ml-auto">
-                <li className="nav-item">
+                <li className={`nav-item ${location.pathname === "/" ? "active" : ""}`}>
                   <Link className="nav-link" to="/">
                     Home
                   </Link>
                 </li>
-                <li className="nav-item">
+                <li className={`nav-item ${location.pathname === "/about" ? "active" : ""}`}>
                   <Link className="nav-link" to="/about">
                     About Us
                   </Link>
                 </li>
-                <li className="nav-item">
+                <li className={`nav-item ${location.pathname === "/stories" ? "active" : ""}`}>
                   <Link className="nav-link" to="/stories">
                     Stories
                   </Link>
                 </li>
-                <li className="nav-item">
+                <li className={`nav-item ${location.pathname === "/services" ? "active" : ""}`}>
                   <Link className="nav-link" to="/services">
                     Services
                   </Link>
                 </li>
-                <li className="nav-item">
+                <li className={`nav-item ${location.pathname === "/contact" ? "active" : ""}`}>
                   <Link className="nav-link" to="/contact">
                     Contact Us
                   </Link>
                 </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/login">
-                    Login
+                <li className={`nav-item ${location.pathname === "/testimonials" ? "active" : ""}`}>
+                  <Link className="nav-link" to="/testimonials">
+                    Testimonials
                   </Link>
                 </li>
               </ul>
