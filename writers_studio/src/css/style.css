@@ -278,6 +278,7 @@ button {
 .banner_taital {
     width: 100%;
     float: left;
+    margin-left:280px ;
     padding: 100px 0px;
 }
 
@@ -364,7 +365,6 @@ button {
     color: #ffffff;
     background-color: #f76d37;
 }
-
 /* banner section end */
 
 /* about section start */
