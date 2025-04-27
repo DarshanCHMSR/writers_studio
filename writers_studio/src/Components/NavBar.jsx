@@ -4,6 +4,8 @@ import "../css/responsive.css";
 import "../css/jquery.mCustomScrollbar.min.css";
 import "../css/owl.carousel.min.css";
 import images from "../images/logo.webp";
+import { Link } from "react-router-dom";
+
 const NavBar = () => {
   return (
     <div>
@@ -12,9 +14,9 @@ const NavBar = () => {
         <div className="container-fluid">
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="logo">
-              <a href="#">
-                <img src={images} alt="Logo" style={{height:"60px"}} />
-              </a>
+              <Link to="/">
+                <img src={images} alt="Logo" style={{ height: "60px" }} />
+              </Link>
             </div>
             <button
               className="navbar-toggler"
@@ -29,35 +31,35 @@ const NavBar = () => {
             </button>
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav ml-auto">
-                <li className="nav-item active">
-                  <a className="nav-link" href="#">
+                <li className="nav-item">
+                  <Link className="nav-link" to="/">
                     Home
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <Link className="nav-link" to="/about">
                     About Us
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <Link className="nav-link" to="/stories">
                     Stories
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <Link className="nav-link" to="/services">
                     Services
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <Link className="nav-link" to="/contact">
                     Contact Us
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
-      Login
-                  </a>
+                  <Link className="nav-link" to="/login">
+                    Login
+                  </Link>
                 </li>
               </ul>
             </div>

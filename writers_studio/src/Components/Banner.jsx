@@ -12,7 +12,7 @@ const Banner = () => {
                          <div className="banner_taital">
                             <h1 className="outstanding_text">Dream Ink</h1>
                             <h1 className="coffee_text">Writers Studio</h1>
-                            <p className="there_text"><bold>The Writer’s Studio is an all-in-one,</bold> web-based platform tailored for the unique needs of scriptwriters. Whether you're crafting a screenplay for a movie, scripting a stage play, building dialogue for a video game, or developing episodic content for web series and television—this tool is designed to be your creative companion. </p>
+                            <p className="there_text"><strong>The Writer’s Studio is an all-in-one,</strong> web-based platform tailored for the unique needs of scriptwriters. Whether you're crafting a screenplay for a movie, scripting a stage play, building dialogue for a video game, or developing episodic content for web series and television—this tool is designed to be your creative companion. </p>
                             <div className="learnmore_bt"><a href="#">Get Started</a></div>
                          </div>
                       </div>
