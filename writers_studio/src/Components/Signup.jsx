@@ -24,10 +24,14 @@ const SignUp = () => {
         <input class="input" type="email" placeholder="Enter your email " required=""/>
         <span>Email</span>
     </label> 
+    <button class="otpsubmit">Get otp</button>
+
     <label>
         <input class="input" type="number" placeholder="Enter otp" required=""/>
         <span>Otp</span>
     </label>
+    <button class="otpsubmit">Verify otp</button>
+
     <label>
         <input class="input" type="password" placeholder="Enter password" required=""/>
         <span>Password</span>

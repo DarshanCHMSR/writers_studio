@@ -130,6 +130,22 @@
   .submit:hover {
     background-color: #00bfff96;
   }
+  .otpsubmit {
+    border: none;
+    outline: none;
+    padding: 5px;
+    border-radius: 10px;
+    color: #fff;
+    margin-left: 9.5vw;
+    font-size: 16px;
+    transform: .3s ease;
+    height: 30px;
+    background-color: #00bfff;
+  }
+  
+  .otpsubmit:hover {
+    background-color: #00bfff96;
+  }
   
   @keyframes pulse {
     from {
