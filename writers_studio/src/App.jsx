@@ -5,12 +5,14 @@ import About from "./Components/About";
 import Footer from "./Components/Footer";
 import ContactUs from "./Components/ContactUs";
 import Testimonial from "./Components/Testimonial";
+import Services from "./Components/Services";
 
 function App() {
   return<>
   <NavBar />
   <Banner />
   <About />
+  <Services />
   <Testimonial />
   <ContactUs />
   <Footer />

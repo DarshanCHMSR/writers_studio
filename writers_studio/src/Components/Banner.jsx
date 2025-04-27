@@ -1,5 +1,3 @@
-import images from "../images/Banner.webp";
-import ima from "../images/About-Banner.jpg";
 
 const Banner = () => {
   return (
