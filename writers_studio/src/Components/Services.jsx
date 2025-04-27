@@ -3,7 +3,7 @@ const Services = () => {
     return (
      <div>
     <div className="services_section layout_padding">
-         <div className="container">
+         <div className="container" style={{display:"block"}}>
             <div className="row">
                <div className="col-sm-12">
                   <h1 className="services_taital">Services</h1>
