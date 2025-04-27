@@ -3,8 +3,7 @@ import "../css/style.css";
 import "../css/responsive.css";
 import "../css/jquery.mCustomScrollbar.min.css";
 import images from "../images/quick-icon.png";
-// import "../css/owl.carousel.min.css";
-// import "../css/owl.theme.default.min.css";
+import "../css/owl.carousel.min.css";
 const Testimonial = () => {
   return (
     <div>

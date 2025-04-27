@@ -2,8 +2,7 @@ import "../css/bootstrap.min.css";
 import "../css/style.css";
 import "../css/responsive.css";
 import "../css/jquery.mCustomScrollbar.min.css";
-// import "../css/owl.carousel.min.css";
-// import "../css/owl.theme.default.min.css";
+import "../css/owl.carousel.min.css";
 const ContactUs = () => {
   return (
     <div>

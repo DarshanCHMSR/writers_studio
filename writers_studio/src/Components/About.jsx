@@ -3,8 +3,7 @@ import "../css/style.css";
 import "../css/responsive.css";
 import "../css/jquery.mCustomScrollbar.min.css";
 import images from "../images/About-Banner.jpg";
-// import "../css/owl.carousel.min.css";
-// import "../css/owl.theme.default.min.css";
+import "../css/owl.carousel.min.css";
 const About = () => {
   return (
     <div>

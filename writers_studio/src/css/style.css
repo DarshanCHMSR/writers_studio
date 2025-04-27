@@ -13,17 +13,17 @@
 
 /*--------------------------------------------------------------------- import Files ---------------------------------------------------------------------*/
 
-/* import "animate.min.css";
-import "normalize.css";
-import "icomoon.css";
-import "css/font-awesome.min.css";
-import "meanmenu.css";
-import "owl.carousel.min.css";
-import "swiper.min.css";
-import "slick.css";
-import "jquery.fancybox.min.css";
-import "jquery-ui.css";
-import "nice-select.css"; */
+@import url(animate.min.css);
+@import url(normalize.css);
+@import url(icomoon.css);
+/* @import url('../node_modules/font-awesome/css/font-awesome.min.css'); */
+@import url(meanmenu.css);
+@import url(owl.carousel.min.css);
+/* @import url(./swiper.min.css); */
+@import url(slick.css);
+@import url(jquery.fancybox.min.css);
+@import url(jquery-ui.css);
+@import url(nice-select.css);
 
 /*--------------------------------------------------------------------- skeleton ---------------------------------------------------------------------*/
 
