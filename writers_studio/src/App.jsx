@@ -8,6 +8,9 @@ import ContactUs from "./Components/ContactUs";
 import Testimonial from "./Components/Testimonial";
 import Services from "./Components/Services";
 import Stories from "./Components/Stories";
+import Login from "./Components/Login";
+import SignUp from "./Components/Signup";
+import ForgotPassword from "./Components/Forgotpassword";
 
 function Homes() {
   return (
@@ -28,6 +31,9 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Homes />} />
+        <Route path="/login" element={<Login/>} />
+        <Route path="/signup" element={<SignUp/>} />
+        <Route path="/forgot" element={<ForgotPassword/>} />
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
         <Route path="/stories" element={<Stories />} />
