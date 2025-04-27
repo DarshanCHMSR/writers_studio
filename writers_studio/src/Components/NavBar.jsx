@@ -56,7 +56,7 @@ const NavBar = () => {
                 </li>
                 <li className="nav-item">
                   <a className="nav-link" href="#">
-                    <i className="fa fa-search" aria-hidden="true"></i>
+      Login
                   </a>
                 </li>
               </ul>
