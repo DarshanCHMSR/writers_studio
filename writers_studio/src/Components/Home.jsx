@@ -5,12 +5,10 @@ import ContactUs from "./ContactUs";
 import Testimonial from "./Testimonial";
 import Services from "./Services";
 import Stories from "./Stories";
-import NavBar from "./NavBar";
 
 const Home = () => {
     return (
       <>
-        <NavBar />
         <Banner />
         <About />
         <Stories />

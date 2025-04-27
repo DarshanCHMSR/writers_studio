@@ -11,6 +11,7 @@ import Stories from "./Components/Stories";
 import Login from "./Components/Login";
 import SignUp from "./Components/Signup";
 import ForgotPassword from "./Components/Forgotpassword";
+import Home from "./Components/Home";
 
 function Homes() {
   return (
@@ -30,7 +31,8 @@ function App() {
     <Router>
       <NavBar />
       <Routes>
-        <Route path="/" element={<Homes />} />
+        <Route path="/n" element={<Homes />} />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login/>} />
         <Route path="/signup" element={<SignUp/>} />
         <Route path="/forgot" element={<ForgotPassword/>} />
