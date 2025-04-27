@@ -7,19 +7,19 @@ import "../css/owl.carousel.min.css";
 const About = () => {
   return (
     <div>
-      <div class="about_section layout_padding">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-6">
-                  <div class="about_taital_main">
-                     <div class="about_taital">About Us</div>
-                     <p class="about_text">The Writer’s Studio is an all-in-one, web-based platform tailored for the unique needs of scriptwriters</p>
-                     <p class="about_text">The Writer’s Studio is an all-in-one, web-based platform tailored for the unique needs of scriptwriters</p>
-                     <div class="read_bt"><a href="#">Read More</a></div>
+      <div className="about_section layout_padding">
+         <div className="container">
+            <div className="row">
+               <div className="col-md-6">
+                  <div className="about_taital_main">
+                     <div className="about_taital">About Us</div>
+                     <p className="about_text">The Writer’s Studio is an all-in-one, web-based platform tailored for the unique needs of scriptwriters</p>
+                     <p className="about_text">The Writer’s Studio is an all-in-one, web-based platform tailored for the unique needs of scriptwriters</p>
+                     <div className="read_bt"><a href="#">Read More</a></div>
                   </div>
                </div>
-               <div class="col-md-6 ">
-                  <div class="about_img " style={{marginTop:"100px"}}><img src={images}/></div>
+               <div className="col-md-6 ">
+                  <div className="about_img " style={{marginTop:"100px"}}><img src={images}/></div>
                </div>
             </div>
          </div>

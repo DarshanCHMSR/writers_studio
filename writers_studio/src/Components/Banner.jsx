@@ -2,61 +2,38 @@ import "../css/bootstrap.min.css";
 import "../css/style.css";
 import "../css/responsive.css";
 import "../css/jquery.mCustomScrollbar.min.css";
-// import "../css/owl.carousel.min.css";
-// import "../css/owl.theme.default.min.css";
+import images from "../images/Banner.webp";
+import ima from "../images/About-Banner.jpg";
+
 const Banner = () => {
   return (
     <div>
-     <div class="banner_section layout_padding">
-         <div class="container">
-            <div id="main_slider" class="carousel slide" data-ride="carousel">
-               <div class="carousel-inner">
-                  <div class="carousel-item active">
-                     <div class="row">
-                        <div class="col-sm-12">
-                           <div class="banner_taital">
-                              <h1 class="outstanding_text">Dream Ink</h1>
-                              <h1 class="coffee_text">Writers Studio</h1>
-                              <p class="there_text"><bold>The Writer’s Studio is an all-in-one,</bold> web-based platform tailored for the unique needs of scriptwriters. Whether you're crafting a screenplay for a movie, scripting a stage play, building dialogue for a video game, or developing episodic content for web series and television—this tool is designed to be your creative companion. </p>
-                              <div class="learnmore_bt"><a href="#">Get Started</a></div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="carousel-item">
-                     <div class="row">
-                        <div class="col-sm-12">
-                           <div class="banner_taital">
-                              <h1 class="outstanding_text">Outstanding </h1>
-                              <h1 class="coffee_text">Coffee Shop</h1>
-                              <p class="there_text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, </p>
-                              <div class="learnmore_bt"><a href="#">Learn More</a></div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="carousel-item">
-                     <div class="row">
-                        <div class="col-sm-12">
-                           <div class="banner_taital">
-                              <h1 class="outstanding_text">Outstanding </h1>
-                              <h1 class="coffee_text">Coffee Shop</h1>
-                              <p class="there_text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, </p>
-                              <div class="learnmore_bt"><a href="#">Learn More</a></div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               {/* <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
-               <i class="fa fa-angle-left"></i>
-               </a>
-               <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
-               <i class="fa fa-angle-right"></i>
-               </a> */}
-            </div>
-         </div>
-      </div>
+    <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
+  <ol className="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div className="carousel-inner">
+    <div className="carousel-item active">
+      <img className="d-block w-100" src={images} alt="First slide"/>
+    </div>
+    <div className="carousel-item">
+      <img className="d-block w-100" src={ima} alt="Second slide"/>
+    </div>
+    <div className="carousel-item">
+      <img className="d-block w-100" src="..." alt="Third slide"/>
+    </div>
+  </div>
+  <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span className="sr-only">Previous</span>
+  </a>
+  <a className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span className="carousel-control-next-icon" aria-hidden="true"></span>
+    <span className="sr-only">Next</span>
+  </a>
+</div>
     </div>
   );
 };

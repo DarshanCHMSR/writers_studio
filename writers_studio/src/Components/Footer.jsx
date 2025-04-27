@@ -7,16 +7,16 @@ import "../css/jquery.mCustomScrollbar.min.css";
 const Footer = () => {
   return (
     <div>
-         <div class="footer_section layout_padding">
-         <div class="container">
-            <div class="row">
-               <div class="col-lg-3 col-sm-6">
-                  <h3 class="useful_text">About</h3>
-                  <p class="footer_text">The Writer’s Studio is an all-in-one, web-based platform tailored for the unique needs of scriptwriters</p>
+         <div className="footer_section layout_padding">
+         <div className="container">
+            <div className="row">
+               <div className="col-lg-3 col-sm-6">
+                  <h3 className="useful_text">About</h3>
+                  <p className="footer_text">The Writer’s Studio is an all-in-one, web-based platform tailored for the unique needs of scriptwriters</p>
                </div>
-               <div class="col-lg-3 col-sm-6">
-                  <h3 class="useful_text">Menu</h3>
-                  <div class="footer_menu">
+               <div className="col-lg-3 col-sm-6">
+                  <h3 className="useful_text">Menu</h3>
+                  <div className="footer_menu">
                      <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="about.html">About Us</a></li>
@@ -26,27 +26,27 @@ const Footer = () => {
                      </ul>
                   </div>
                </div>
-               <div class="col-lg-3 col-sm-6">
-                  <h1 class="useful_text">Useful Link</h1>
-                  <p class="dummy_text">Some links for reference of this project will bw given </p>
+               <div className="col-lg-3 col-sm-6">
+                  <h1 className="useful_text">Useful Link</h1>
+                  <p className="dummy_text">Some links for reference of this project will bw given </p>
                </div>
-               <div class="col-lg-3 col-sm-6">
-                  <h1 class="useful_text">Contact Us</h1>
-                  <div class="location_text">
+               <div className="col-lg-3 col-sm-6">
+                  <h1 className="useful_text">Contact Us</h1>
+                  <div className="location_text">
                      <ul>
                         <li>
                            <a href="#">
-                           <i class="fa fa-map-marker" aria-hidden="true"></i><span class="padding_left_10">Address : Bangalore</span>
+                           <i className="fa fa-map-marker" aria-hidden="true"></i><span className="padding_left_10">Address : Bangalore</span>
                            </a>
                         </li>
                         <li>
                            <a href="#">
-                           <i class="fa fa-phone" aria-hidden="true"></i><span class="padding_left_10">Call : +91 00000 00000</span>
+                           <i className="fa fa-phone" aria-hidden="true"></i><span className="padding_left_10">Call : +91 00000 00000</span>
                            </a>
                         </li>
                         <li>
                            <a href="#">
-                           <i class="fa fa-envelope" aria-hidden="true"></i><span class="padding_left_10">Email : demo@gmail.com</span>
+                           <i className="fa fa-envelope" aria-hidden="true"></i><span className="padding_left_10">Email : demo@gmail.com</span>
                            </a>
                         </li>
                      </ul>
@@ -55,9 +55,9 @@ const Footer = () => {
             </div>
          </div>
       </div>
-      <div class="copyright_section">
-         <div class="container">
-            <p class="copyright_text">2025 All Rights Reserved. Design by <a href="">Writers Studio</a></p>
+      <div className="copyright_section">
+         <div className="container">
+            <p className="copyright_text">2025 All Rights Reserved. Design by <a href="">Writers Studio</a></p>
          </div>
       </div>
      
