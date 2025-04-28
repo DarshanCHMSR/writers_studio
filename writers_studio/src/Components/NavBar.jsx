@@ -54,6 +54,11 @@ const NavBar = () => {
                 Stories
               </Link>
             </li>
+            <li className={`nav-item ${location.pathname === "/creator" ? "active" : ""}`}>
+              <Link className="nav-link" to="/creator">
+                Create Your Story
+              </Link>
+            </li>
             <li className={`nav-item ${location.pathname === "/testimonials" ? "active" : ""}`}>
               <Link className="nav-link" to="/testimonials">
                 Testimonials

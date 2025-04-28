@@ -12,6 +12,7 @@ import Login from "./Components/Login";
 import SignUp from "./Components/Signup";
 import ForgotPassword from "./Components/Forgotpassword";
 import Home from "./Components/Home";
+import Creator from "./Components/Creator";
 
 function Homes() {
   return (
@@ -41,6 +42,7 @@ function App() {
         <Route path="/stories" element={<Stories />} />
         <Route path="/testimonials" element={<Testimonial />} />
         <Route path="/contact" element={<ContactUs />} />
+        <Route path="/creator" element={<Creator />} />
       </Routes>
       <Footer />
     </Router>
