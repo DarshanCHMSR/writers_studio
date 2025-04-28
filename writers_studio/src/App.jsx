@@ -13,6 +13,7 @@ import SignUp from "./Components/Signup";
 import ForgotPassword from "./Components/Forgotpassword";
 import Home from "./Components/Home";
 import Creator from "./Components/Creator";
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 function Homes() {
   return (
