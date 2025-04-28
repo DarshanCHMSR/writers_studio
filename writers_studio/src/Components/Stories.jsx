@@ -1,5 +1,5 @@
 import React from "react";
-import "../css/Stories.css";
+import "../css/stories.css";
 const Stories = () => {
     return (
      <div>
