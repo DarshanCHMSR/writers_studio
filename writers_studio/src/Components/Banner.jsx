@@ -1,6 +1,6 @@
 
 const Banner = () => {
-  return (
+  return ( 
    <div>
    <div className="banner_section layout_padding">
        <div className="container">

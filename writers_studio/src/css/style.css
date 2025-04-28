@@ -120,7 +120,7 @@ button:focus {
 }
 
 ul,
-li,
+li,  
 ol {
     margin: 0px;
     padding: 0px;
@@ -232,7 +232,7 @@ button {
     height: auto;
     background-size: 100%;
     padding: 10px 0px 25px 0px;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; 
 }
 
 .banner_taital {
@@ -281,7 +281,7 @@ button {
     color: #fff;
     text-align: center;
     margin-right: 12px;
-    height: 53px;
+    height: 3.4v;
     padding: 15px 40px;
     font-size: 14px;
     text-transform: uppercase;

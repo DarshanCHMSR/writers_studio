@@ -49,13 +49,20 @@
     transform: translateX(0);
   }
   
-  .card__content {
+  .card__content { 
     font-size: 16px;
     line-height: 1.4;
     color: #000;
     margin-bottom: 20px;
   }
-  
+  @media (max-width: 575px) {
+    .card__content { 
+      font-size: 13px;
+      line-height: 1.4;
+      color: #000;
+      margin-bottom: 20px;
+    }
+  }
   .card__form {
     display: flex;
     flex-direction: column;

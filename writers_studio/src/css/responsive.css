@@ -173,7 +173,8 @@
         text-align: center;
     }
     .banner_section {
-        background-size: 100% 100%;
+        padding: 5px 0px 15px 0px; /* Reduce padding for smaller screens */
+        background-size: contain; /* Adjust background size for smaller screens */
     }
     .outstanding_text {
         font-size: 50px;
@@ -348,18 +349,30 @@
     .navbar-expand-lg .navbar-nav .nav-link {
         text-align: center;
     }
+    .banner_taital{
+margin-left: 10vh; 
+margin-top:0 ;
+padding-top: 5vh;
+  }
     .banner_section {
-        background-size: 100% 100%;
-    }
+        padding: 5px 0px 10px 0px; /* Further reduce padding for very small screens */
+        height: 250px; /* Set a fixed height for very small screens */    }
+        .learnmore_bt a{
+            padding: 1px 10px;
+            font-size: 10px;
+        }
     .outstanding_text {
-        font-size: 30px;
+        font-size: 20px;
     }
     .coffee_text {
-        font-size: 40px;
+        font-size: 20px;
+    }
+    .card__content{
+        font-size: 7px;
     }
     .there_text {
         width: 100%;
-        font-size: 14px;
+        font-size: 10px;
     }
     .about_taital_main {
         padding: 0px;
