@@ -12,13 +12,14 @@ const NavBar = () => {
             <img src={images} alt="Logo" style={{ height: "40px" }} />
           </Link>
           <button
-            className="navbar-toggler btn btn-dark" // Added "btn-dark" class
+            className="navbar-toggler btn btn-dark" // Ensures the button is always dark
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent"
             aria-expanded="false"
             aria-label="Toggle navigation"
+            style={{ backgroundColor: "#343a40", borderColor: "#343a40" }} // Explicitly set dark background and border
           >
             <span className="navbar-toggler-icon"></span>
           </button>
