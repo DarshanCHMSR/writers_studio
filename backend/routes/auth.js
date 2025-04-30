@@ -12,8 +12,8 @@ const JWT_SECRET = "darshanch@4444"; // Secret key for JWT
 router.post(
   "/createuser",
   [
-    body("fisrtname", "Enter a valid firstname").isLength({ min: 3 }),
-    body("lastname", "Enter a valid lastname").isLength({ min: 3 }),
+    body("firstname", "Enter a valid name").isLength({ min: 3 }),
+    body("lastname", "Enter a valid name").isLength({ min: 3 }),
     body("email", "Enter a valid email").isEmail(),
     body("password", "Password must be at least 5 characters").isLength({ min: 5 }),
     body("cpassword", "Password must be at least 5 characters").isLength({ min: 5 }),
@@ -28,7 +28,7 @@ router.post(
       }
 if (req.body.password !== req.body.cpassword) {
         return res.status(400).json({ success, error: "Passwords do not match" });
-      } 
+      }
       // Check if a user with the same email already exists
       let user = await User.findOne({ email: req.body.email });
       if (user) {
