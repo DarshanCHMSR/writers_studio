@@ -1,50 +1,144 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import '../../css/signup.css'; 
+import { useNavigate } from 'react-router-dom';
+
 const SignUp = () => {
-  
-    return (
-      <div className="container">
-    <form class="form">
-    <p class="title">Register </p>
-    <p class="message">Signup now and get full access to our Writers Studio. </p>
-        <div class="flex">
-        <label>
-            <input class="input" type="text" placeholder="Enter your first name" required=""/>
-            <span>Firstname</span>
-        </label>
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    otp: '',
+  });
+  const [error, setError] = useState('');
+  const [otpVerified, setOtpVerified] = useState(false);
+  const navigate = useNavigate();
 
-        <label>
-            <input class="input" type="text" placeholder="Enter your last name" required=""/>
-            <span>Lastname</span>
-        </label>
-    </div>  
-            
-    <label>
-        <input class="input" type="email" placeholder="Enter your email " required=""/>
-        <span>Email</span>
-    </label> 
-    <button class="otpsubmit">Get otp</button>
-
-    <label>
-        <input class="input" type="number" placeholder="Enter otp" required=""/>
-        <span>Otp</span>
-    </label>
-    <button class="otpsubmit">Verify otp</button>
-
-    <label>
-        <input class="input" type="password" placeholder="Enter password" required=""/>
-        <span>Password</span>
-    </label>
-    <label>
-        <input class="input" type="password" placeholder="Confirm password" required=""/>
-        <span>Confirm password</span>
-    </label>
-    <button class="submit">Submit</button>
-    <p class="signin">Already have an acount ? <a href="/login">Login</a> </p>
-</form>
-      </div>
-    );
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  
-  export default SignUp;
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+
+    if (formData.password !== formData.confirmPassword) {
+      setError('Passwords do not match');
+      return;
+    }
+
+    try {
+      const response = await fetch('http://localhost:5000/api/auth/createuser', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: `${formData.firstName} ${formData.lastName}`,
+          email: formData.email,
+          password: formData.password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Redirect to login page after successful signup
+        navigate('/login');
+      } else {
+        setError(data.error || 'Failed to register');
+      }
+    } catch (err) {
+      console.error('Error during signup:', err);
+      setError('Something went wrong. Please try again later.');
+    }
+  };
+
+  return (
+    <div className="container">
+      <form className="form" onSubmit={handleSubmit}>
+        <p className="title">Register</p>
+        <p className="message">Signup now and get full access to our Writers Studio.</p>
+
+        {error && <p className="error-message">{error}</p>}
+
+        <div className="flex">
+          <label>
+            <input
+              className="input"
+              type="text"
+              name="firstName"
+              placeholder="Enter your first name"
+              required
+              value={formData.firstName}
+              onChange={handleChange}
+            />
+            <span>Firstname</span>
+          </label>
+
+          <label>
+            <input
+              className="input"
+              type="text"
+              name="lastName"
+              placeholder="Enter your last name"
+              required
+              value={formData.lastName}
+              onChange={handleChange}
+            />
+            <span>Lastname</span>
+          </label>
+        </div>
+
+        <label>
+          <input
+            className="input"
+            type="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+            value={formData.email}
+            onChange={handleChange}
+          />
+          <span>Email</span>
+        </label>
+
+        <label>
+          <input
+            className="input"
+            type="password"
+            name="password"
+            placeholder="Enter password"
+            required
+            value={formData.password}
+            onChange={handleChange}
+          />
+          <span>Password</span>
+        </label>
+
+        <label>
+          <input
+            className="input"
+            type="password"
+            name="confirmPassword"
+            placeholder="Confirm password"
+            required
+            value={formData.confirmPassword}
+            onChange={handleChange}
+          />
+          <span>Confirm password</span>
+        </label>
+
+        <button className="submit" type="submit">
+          Submit
+        </button>
+        <p className="signin">
+          Already have an account? <a href="/login">Login</a>
+        </p>
+      </form>
+    </div>
+  );
+};
+
+export default SignUp;

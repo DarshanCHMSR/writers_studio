@@ -15,6 +15,8 @@ router.post(
     body("name", "Enter a valid name").isLength({ min: 3 }),
     body("email", "Enter a valid email").isEmail(),
     body("password", "Password must be at least 5 characters").isLength({ min: 5 }),
+    body("cpassword", "CPassword must be at least 5 characters").isLength({ min: 5 }),
+
   ],
   async (req, res) => {
     let success = false;
@@ -24,9 +26,12 @@ router.post(
       if (!errors.isEmpty()) {
         return res.status(400).json({ success, errors: errors.array() });
       }
-
+      if (req.body.password !== req.body.cpassword) {
+        return res.status(400).json({ success, error: "Passwords do not match" });
+      }
       // Check if a user with the same email already exists
       let user = await User.findOne({ email: req.body.email });
+
       if (user) {
         return res.status(400).json({ success, error: "A user with this email already exists" });
       }
