@@ -23,9 +23,10 @@ const Login = () => {
 
       const data = await response.json();
       if (response.ok) {
-
         // Save the auth token and redirect to the dashboard
         localStorage.setItem('auth-token', data.authtoken);
+        localStorage.setItem('user', data.user.firstname); // Save user data if needed
+        localStorage.setItem('email', data.user.email); // Save email if needed
         navigate('/creator'); // Redirect to the dashboard or another page
       } else {
         setError(data.error || 'Invalid credentials');

@@ -14,7 +14,8 @@ const Creator = () => {
     }
     // eslint-disable-next-line
 }, [])
-
+const user=localStorage.getItem('user')
+const email=localStorage.getItem('email')
   const handleUpClick = () => {
     let newText = Text.toUpperCase();
     setText(newText);
@@ -112,7 +113,10 @@ const Creator = () => {
 
     <>
     <div>
-      <h2>Create Your own Stories</h2>
+      <p style={{textAlign:"center",fontSize:"2.5rem",marginTop:"7rem",marginBottom:"2.5rem",fontWeight:"600"}}>Create Your own Stories</p>
+      <h1>User Info:</h1>
+      <p>Welcome <strong>{user}</strong> to the Writer's Studio. Start writing your story below:</p>
+      <p>Your Email : {email}</p>
       <ReactQuill
         theme="snow" // Use the "snow" theme
         value={Text} // Bind the editor's value to state
@@ -128,6 +132,8 @@ const Creator = () => {
       </div>
       
     </div>
+    <div className=" my-3 fixed-bottom" style={{ position: 'fixed', bottom: '0', width: '100%', backgroundColor: '#f8f9fa', padding: '10px' }}>
+     
     <button
         onClick={handleSave}
         className="btn btn-primary mx-2 my-1" 
@@ -182,6 +188,7 @@ const Creator = () => {
     minutes to read
   </p>
   
+</div>
 </div>
     </>
   );
