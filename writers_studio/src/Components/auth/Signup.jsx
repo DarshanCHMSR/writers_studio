@@ -8,7 +8,7 @@ const SignUp = () => {
     lastName: '',
     email: '',
     password: '',
-    confirmPassword: '',
+    cpassword: '',
     otp: '',
   });
   const [error, setError] = useState('');
@@ -23,7 +23,7 @@ const SignUp = () => {
     e.preventDefault();
     setError('');
 
-    if (formData.password !== formData.confirmPassword) {
+    if (formData.password !== formData.cpassword) {
       setError('Passwords do not match');
       return;
     }
@@ -35,9 +35,11 @@ const SignUp = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name: `${formData.firstName} ${formData.lastName}`,
+          firstname: formData.firstName,
+          lastname: formData.lastName,
           email: formData.email,
           password: formData.password,
+          cpassword: formData.cpassword,
         }),
       });
 
@@ -121,10 +123,10 @@ const SignUp = () => {
           <input
             className="input"
             type="password"
-            name="confirmPassword"
+            name="cpassword"
             placeholder="Confirm password"
             required
-            value={formData.confirmPassword}
+            value={formData.cpassword}
             onChange={handleChange}
           />
           <span>Confirm password</span>

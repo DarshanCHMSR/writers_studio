@@ -16,7 +16,7 @@ router.post(
     body("lastname", "Enter a valid name").isLength({ min: 3 }),
     body("email", "Enter a valid email").isEmail(),
     body("password", "Password must be at least 5 characters").isLength({ min: 5 }),
-    body("cpassword", "Password must be at least 5 characters").isLength({ min: 5 }),
+    body("cpassword", "Confirm Password must be at least 5 characters").isLength({ min: 5 }),
   ],
   async (req, res) => {
     let success = false;
