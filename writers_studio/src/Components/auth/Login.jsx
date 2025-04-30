@@ -23,7 +23,13 @@ const Login = () => {
 
       const data = await response.json();
 
-     
+      if (response.ok) {
+        // Save the auth token and redirect to the dashboard
+        localStorage.setItem('auth-token', data.authtoken);
+        navigate('/'); // Redirect to the dashboard or another page
+      } else {
+        setError(data.error || 'Invalid credentials');
+      }
     } catch (err) {
       console.error('Error during login:', err);
       setError('Something went wrong. Please try again later.');
