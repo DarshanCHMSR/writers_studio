@@ -3,14 +3,72 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; // Import Quill's CSS
 
 const Creator = () => {
+
+  const handleUpClick = () => {
+    let newText = Text.toUpperCase();
+    setText(newText);
+    props.showAlert("Converted to uppercase","success")
+  };
+  const handleLoClick = () => {
+    let newText = Text.toLowerCase();
+    setText(newText);
+    props.showAlert("Converted to lowercase","success")
+  };
+  const handleClearText = () => {
+    let newText = '';
+    setText(newText);
+    props.showAlert("Text has been Cleared","success")
+  };
+  const handleOnChange = (event) => {
+    setText(event.target.value);
+  };
+  const speak = () => {
+    let msg = new SpeechSynthesisUtterance(Text);
+    window.speechSynthesis.speak(msg);
+    const toogle = document.getElementById('toggle')
+    if (toogle.textContent === "Speak") {
+        toogle.innerHTML = "Stop"
+    }
+    else {
+        toogle.innerHTML = "Speak"
+        if (toogle.innerHTML === "Speak"){
+            window.speechSynthesis.cancel()
+        }
+    }
+}
+  const handleCopy =()=>{
+    var Text=document.getElementById("myBox");
+    Text.select();
+    navigator.clipboard.writeText(Text.value);
+   document.getSelection().removeAllRanges();
+    props.showAlert("Copied to clipboard","success")
+  }
+
+  const handleExtraSpaces =()=>{
+      let newText=Text.split(/[ ]+/);
+      setText(newText.join(" "));
+      props.showAlert("Removed Extraspaces ","success")
+  }
+  const handleExtraLines =()=>{
+    let newText=Text.split(/\s+/);
+    setText(newText.join(" "));
+    props.showAlert("Removed Extraspaces ","success")
+}
+  const handleGmail =()=>{
+    let newText="www."+Text+".com";
+    setText(newText);
+    props.showAlert("Gmail form of the text created ","success")
+  }
+  const [Text, setText] = useState("");
+
   const [content, setContent] = useState(''); // State to store editor content
 
   const handleChange = (value) => {
-    setContent(value); // Update state when content changes
+    setText(value); // Update state when text changes
   };
 
   const handleSave = () => {
-    console.log(JSON.stringify({ content })); // Log content in JSON format
+    console.log(JSON.stringify({ Text })); // Log text in JSON format
   };
 
   // Quill modules for toolbar customization
@@ -46,20 +104,23 @@ const Creator = () => {
     'align',
   ];
 
-  return (
+  return ( 
+
+    <>
     <div>
-      <h2>Quill Editor</h2>
+      <h2>Create Your own Stories</h2>
       <ReactQuill
         theme="snow" // Use the "snow" theme
-        value={content} // Bind the editor's value to state
-        onChange={handleChange} // Handle content changes
+        value={Text} // Bind the editor's value to state
+        onChange={handleChange} // Handle text changes
         placeholder="Start writing here..."
         modules={modules} // Add custom toolbar
         formats={formats} // Add supported formats
+        style={{ height: '300px', marginTop: '20px' }} // Set editor height and margin
       />
       <div style={{ marginTop: '20px' }}>
         <h3>Preview:</h3>
-        <div dangerouslySetInnerHTML={{ __html: content }} />
+        <div dangerouslySetInnerHTML={{ __html: Text }} />
       </div>
       <button
         onClick={handleSave}
@@ -76,6 +137,39 @@ const Creator = () => {
         Save
       </button>
     </div>
+    <button disabled={Text.length===0} className="btn btn-primary mx-2 my-1" onClick={handleUpClick}>
+      Convert to uppercase
+    </button>
+    <button disabled={Text.length===0} className="btn btn-primary mx-2 my-1" onClick={handleLoClick}>
+      Convert to Lowercase
+    </button>
+    <button disabled={Text.length===0}className="btn btn-primary mx-2 my-1" onClick={handleClearText}>
+      Clear text
+    </button>
+    <button disabled={Text.length===0} type="submit" onClick={speak} className="btn btn-warning mx-2 my-2" id="toggle">Speak</button>
+    
+    <button disabled={Text.length===0} className="btn btn-primary mx-2 my-1" onClick={handleCopy}>
+      Copy text
+    </button>
+    <button disabled={Text.length===0} className="btn btn-primary mx-2 my-1" onClick={handleExtraSpaces}>
+      Remove ExtraSpaces
+    </button>
+    <button disabled={Text.length===0} className="btn btn-primary mx-2 my-1" onClick={handleExtraLines}>
+      Remove Lines
+    </button>
+    <button disabled={Text.length===0}  className="btn btn-primary mx-2 my-1" onClick={handleGmail}>
+      Gmail form
+    </button>
+  <div className="container my-3" >
+    <h2>Your Text Summary</h2>
+    <p>
+      {Text.split(/\s+/).filter((element)=>{return element.length!==0}).length} words and {Text.length} charaters{" "}
+    </p>
+    <p>{0.008 * Text.split(" ").filter((element)=>{return element.length!==0}).length+"  minutes"}</p>
+    <h2>Preview</h2>
+    <p>{Text.length>0?Text:"Nothing to preview"}</p>
+  </div>
+    </>
   );
 };
 
