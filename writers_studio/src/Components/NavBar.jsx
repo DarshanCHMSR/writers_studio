@@ -78,7 +78,7 @@ const NavBar = () => {
                   </Link>
                 </li>
               )}
-              {location.pathname === "/creator" ? (
+              {location.pathname === "/creator" || "/stories"? (
                                      <button className="btn btn-primary mx-3" onClick={handleLogout} >Logout</button>
               ) : (
                 <li >
