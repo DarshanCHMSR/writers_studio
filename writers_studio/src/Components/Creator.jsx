@@ -6,9 +6,9 @@ import 'react-quill/dist/quill.snow.css'; // Import Quill's CSS
 const Creator = () => {
   const navigate = useNavigate();
   useEffect(() => {
-    if(localStorage.getItem('token')){
-       console.log("success");
-    }
+    if(localStorage.getItem('auth-token')){
+        // User is authenticated, proceed with the component logic      
+        }
     else{
         navigate('/login');
     }
