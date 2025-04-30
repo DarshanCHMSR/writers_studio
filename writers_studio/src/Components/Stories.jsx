@@ -5,16 +5,14 @@ import { useNavigate } from "react-router-dom";
 const Stories = () => {
 
 
-  const navigate = useNavigate();
-  useEffect(() => {
-    if(localStorage.getItem('auth-token')){
-        // User is authenticated, proceed with the component logic      
-        }
-    else{
-        navigate('/login');
-    }
-    // eslint-disable-next-line
-}, [])
+//   const navigate = useNavigate();
+//   useEffect(() => {
+//     if(localStorage.getItem('auth-token')){
+//         }
+//     else{
+//         navigate('/login');
+//     }
+// }, [])
     return (
      <div>
 
