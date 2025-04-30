@@ -65,6 +65,8 @@ const NavBar = () => {
                   Testimonials
                 </Link>
               </li>
+
+              
               {localStorage.getItem('auth-token') ? ( location.pathname === "/creator" || "/stories"? (
                                      <button className="btn btn-primary mx-3" onClick={handleLogout} >Logout</button>
               ) : (

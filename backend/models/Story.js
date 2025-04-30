@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 const { Schema } = mongoose;
 
-const NotesSchema = new Schema({
+const StorySchema = new Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
@@ -26,5 +26,5 @@ const NotesSchema = new Schema({
   },
 });
 
-const Note = mongoose.model("notes", NotesSchema);
-export default Note;
+const Story = mongoose.model("story", StorySchema);
+export default Story;

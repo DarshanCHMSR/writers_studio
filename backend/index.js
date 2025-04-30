@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors"; // Import CORS middleware
 import connectToMongo from "./db.js";
 import authRoutes from "./routes/auth.js";
-import notesRoutes from "./routes/notes.js";
+import storiesRoutes from "./routes/stories.js";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
   res.send('Welcome to the Writers Studio API');
 });
 app.use("/api/auth", authRoutes);
-app.use("/api/notes", notesRoutes);
+app.use("/api/story", storiesRoutes);
 
 
 app.listen(PORT, () => {

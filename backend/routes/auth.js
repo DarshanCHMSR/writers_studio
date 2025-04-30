@@ -2,7 +2,7 @@ import express from "express";
 import { body, validationResult } from "express-validator"; // Import express-validator
 import bcrypt from "bcryptjs"; // Import bcrypt for password hashing
 import jwt from "jsonwebtoken"; // Import jsonwebtoken for authentication
-import fetchuser from "../middleware/fetchuser.js"; // Import fetchuser middleware
+import requiresignin from "../middleware/requiresignin.js"; // Import requiresignin middleware
 import User from "../models/User.js"; // Import User model
 
 const router = express.Router();
@@ -112,7 +112,7 @@ router.post(
 );
 
 // Route 3: Get logged-in user's details using POST "/api/auth/getuser". Login required
-router.post("/getuser", fetchuser, async (req, res) => {
+router.post("/getuser", requiresignin, async (req, res) => {
   try {
     const userId = req.user.id;
     const user = await User.findById(userId).select("-password");

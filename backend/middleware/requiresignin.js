@@ -1,7 +1,9 @@
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config();
 
-const fetchuser = (req, res, next) => {
-  const token = req.header("auth-token");
+const requiresignin = (req, res, next) => {
+  const token = req.header("Authorization");
   if (!token) {
     return res.status(401).send({ error: "Please authenticate using a valid token" });
   }
@@ -10,8 +12,8 @@ const fetchuser = (req, res, next) => {
     req.user = data.user;
     next();
   } catch (error) {
-    res.status(401).send({ error: "Please authenticate using a valid token" });
+    res.status(401).send({ JWT_SECRET });
   }
 };
 
-export default fetchuser;
+export default requiresignin;

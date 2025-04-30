@@ -23,7 +23,6 @@ const Login = () => {
 
       const data = await response.json();
       if (response.ok) {
-        console.log(data);
 
         // Save the auth token and redirect to the dashboard
         localStorage.setItem('auth-token', data.authtoken);
