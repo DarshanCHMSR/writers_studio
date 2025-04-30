@@ -19,9 +19,6 @@ const Creator = () => {
     setText(newText);
     props.showAlert("Text has been Cleared","success")
   };
-  const handleOnChange = (event) => {
-    setText(event.target.value);
-  };
   const speak = () => {
     let msg = new SpeechSynthesisUtterance(Text);
     window.speechSynthesis.speak(msg);
@@ -54,17 +51,12 @@ const Creator = () => {
     setText(newText.join(" "));
     props.showAlert("Removed Extraspaces ","success")
 }
-  const handleGmail =()=>{
-    let newText="www."+Text+".com";
-    setText(newText);
-    props.showAlert("Gmail form of the text created ","success")
-  }
+ 
   const [Text, setText] = useState("");
-
-  const [content, setContent] = useState(''); // State to store editor content
-
+  const [normal,setNormal]= useState("");
   const handleChange = (value) => {
     setText(value); // Update state when text changes
+    setNormal({ __html: Text }); // Update normal text state
   };
 
   const handleSave = () => {
@@ -122,8 +114,11 @@ const Creator = () => {
         <h3>Preview:</h3>
         <div dangerouslySetInnerHTML={{ __html: Text }} />
       </div>
-      <button
+      
+    </div>
+    <button
         onClick={handleSave}
+        className="btn btn-primary mx-2 my-1" 
         style={{
           marginTop: '20px',
           padding: '10px 20px',
@@ -136,7 +131,6 @@ const Creator = () => {
       >
         Save
       </button>
-    </div>
     <button disabled={Text.length===0} className="btn btn-primary mx-2 my-1" onClick={handleUpClick}>
       Convert to uppercase
     </button>
@@ -157,18 +151,26 @@ const Creator = () => {
     <button disabled={Text.length===0} className="btn btn-primary mx-2 my-1" onClick={handleExtraLines}>
       Remove Lines
     </button>
-    <button disabled={Text.length===0}  className="btn btn-primary mx-2 my-1" onClick={handleGmail}>
-      Gmail form
-    </button>
-  <div className="container my-3" >
-    <h2>Your Text Summary</h2>
-    <p>
-      {Text.split(/\s+/).filter((element)=>{return element.length!==0}).length} words and {Text.length} charaters{" "}
-    </p>
-    <p>{0.008 * Text.split(" ").filter((element)=>{return element.length!==0}).length+"  minutes"}</p>
-    <h2>Preview</h2>
-    <p>{Text.length>0?Text:"Nothing to preview"}</p>
-  </div>
+   
+  <div className="container my-3">
+  <h2>Your Text Summary</h2>
+  <p>
+    {
+      Text.trim().length === 0
+        ? 0
+        : Text.split(/\s+/).filter((element) => element.length !== 0).length
+    }{" "}
+    words and {Text.length} characters
+  </p>
+  <p>
+    {Text.trim().length === 0
+      ? 0
+      : (0.008 *
+          Text.split(/\s+/).filter((element) => element.length !== 0).length).toFixed(2)}{" "}
+    minutes to read
+  </p>
+  
+</div>
     </>
   );
 };
