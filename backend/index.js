@@ -16,7 +16,7 @@ app.use(express.json());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/notes", notesRoutes);
-app.send("/", (req, res) => {
+app.get("/", (req, res) => {
   res.send("Welcome to the Writers Studio API");
 }
 );
