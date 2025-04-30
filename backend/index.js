@@ -13,13 +13,12 @@ connectToMongo();
 app.use(cors());
 
 app.use(express.json());
-
+app.get('/', (req, res) => {
+  res.send('Welcome to the Writers Studio API');
+});
 app.use("/api/auth", authRoutes);
 app.use("/api/notes", notesRoutes);
-app.get("/", (req, res) => {
-  res.send("Welcome to the Writers Studio API");
-}
-);
+
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
