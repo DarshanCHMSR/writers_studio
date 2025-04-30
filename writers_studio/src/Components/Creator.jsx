@@ -1,8 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import ReactQuill from 'react-quill';
+import { useNavigate } from 'react-router-dom';
 import 'react-quill/dist/quill.snow.css'; // Import Quill's CSS
 
 const Creator = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if(localStorage.getItem('token')){
+       console.log("success");
+    }
+    else{
+        navigate('/login');
+    }
+    // eslint-disable-next-line
+}, [])
 
   const handleUpClick = () => {
     let newText = Text.toUpperCase();
@@ -90,6 +101,7 @@ const Creator = () => {
     'script',
     'indent',
     'direction',
+    'size',
     'color',
     'background',
     'font',

@@ -3,6 +3,10 @@ import { Link, useLocation } from "react-router-dom";
 
 const NavBar = () => {
   const location = useLocation(); // Track the current location
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    window.location = "/login";
+  }
 
   return (
     <div>
@@ -72,6 +76,13 @@ const NavBar = () => {
                   <Link className="nav-link" to="/signup">
                     Sign Up
                   </Link>
+                </li>
+              )}
+              {location.pathname === "/creator" ? (
+                                     <button className="btn btn-primary mx-3" onClick={handleLogout} >Logout</button>
+              ) : (
+                <li >
+                  
                 </li>
               )}
             </ul>

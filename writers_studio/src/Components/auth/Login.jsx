@@ -22,10 +22,11 @@ const Login = () => {
       });
 
       const data = await response.json();
-
       if (response.ok) {
+        console.log(data);
+        alert("Login successful!")
         // Save the auth token and redirect to the dashboard
-        localStorage.setItem('auth-token', data.authtoken);
+        localStorage.setItem('auth', data);
         navigate('/'); // Redirect to the dashboard or another page
       } else {
         setError(data.error || 'Invalid credentials');
