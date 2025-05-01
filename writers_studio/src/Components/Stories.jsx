@@ -59,11 +59,21 @@ const Stories = () => {
               <p className="card-text">{story.description}</p>
               <button
                 className="btn btn-primary"
+                onClick={() => openModal(story)}
                 data-bs-toggle="modal" data-bs-target="#staticBackdrop"
               >
                 See More
               </button>
-              
+            </div>
+          </div>
+        ))
+      ) : (
+        !error && <p className="text-center">No stories available</p>
+      )}
+
+      {/* Bootstrap Modal */}
+      {selectedStory && (
+
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
     <div class="modal-content">
@@ -90,56 +100,6 @@ const Stories = () => {
     </div>
   </div>
 </div>
-            </div>
-          </div>
-        ))
-      ) : (
-        !error && <p className="text-center">No stories available</p>
-      )}
-
-      {/* Bootstrap Modal */}
-      {selectedStory && (
-        <div
-          className="modal fade show" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true"
-          style={{ display: "block", backgroundColor: "rgba(0, 0, 0, 0.5)" }}
-          tabIndex="-1"
-        >
-          <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title" id="staticBackdropLabel">{selectedStory.title}</h5>
-                <button
-                  type="button"
-                  className="btn-close"
-                  onClick={closeModal}
-                ></button>
-              </div>
-              <div className="modal-body">
-                <p><strong>Author:</strong> {selectedStory.author}</p>
-                <p><strong>Description:</strong> {selectedStory.description}</p>
-                <p><strong>Story:</strong> Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero officia asperiores harum. Molestias voluptatibus iste saepe ab blanditiis excepturi vitae et quasi cum? Alias, quae esse autem quas rerum vel?
-                Tempore expedita eveniet blanditiis. Labore quos, autem a expedita aperiam voluptas perspiciatis ratione dignissimos veniam exercitationem soluta, magnam quia nostrum harum iusto aliquid eos tenetur! Magni reprehenderit maiores veritatis. Sapiente.
-                Provident delectus soluta reprehenderit obcaecati saepe incidunt harum impedit ducimus nesciunt in voluptates, rerum nam necessitatibus magni corporis et minima optio tempore veniam consequatur quia quisquam hic. Deleniti, natus possimus.
-                Architecto eaque et ipsa omnis repudiandae obcaecati sunt rerum nobis totam deleniti illo, sint asperiores, natus modi, sapiente repellendus facilis! Reprehenderit quis qui odit doloremque provident est consectetur voluptate maxime?
-                Commodi dolorum sit mollitia amet quis repellendus necessitatibus, illum accusantium dolores, nostrum vel quia in tempore. Asperiores excepturi ab dignissimos expedita enim voluptatum iure amet culpa nihil, error animi dolorem.
-                Unde ipsa qui odio et veniam, facilis, totam magnam repudiandae blanditiis quae sit architecto officia delectus. Amet, voluptates hic molestiae explicabo assumenda iusto, veritatis necessitatibus cumque excepturi quibusdam adipisci aliquam?
-                Fuga repudiandae soluta ut tempore autem perferendis maxime quibusdam vero voluptas ex voluptates iste dolor, quia, nesciunt tempora maiores asperiores doloribus harum amet officiis odio, atque vel aliquid illum! Quod!
-                Dolorum alias ducimus numquam ea ipsa rem quis corporis! Eligendi tenetur est cumque labore iste, nostrum illum ullam commodi, magnam quasi reprehenderit vero esse dolore totam at animi, aspernatur optio?
-                Inventore necessitatibus a nesciunt dolore rem ipsa commodi voluptate veniam laboriosam, praesentium, eveniet ex consequatur, aperiam magnam. Veritatis, recusandae repellat doloremque nostrum sed maxime. Eos ducimus veniam repellat reprehenderit tenetur!
-                Est officiis rem magni accusantium! Tenetur, id provident earum eum animi natus libero a quos possimus, perspiciatis necessitatibus ullam eveniet nobis est incidunt autem, blanditiis nam deserunt eaque et enim.</p>
-              </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  onClick={closeModal}
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
       )}
     </div>
   );
