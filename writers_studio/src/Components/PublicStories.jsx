@@ -45,6 +45,33 @@ const PublicStories = () => {
   const closeModal = () => {
     setSelectedStory(null); // Clear the selected story when the modal is closed
   };
+   const likeStory = async (storyId) => {
+      try {
+        const response = await fetch(`${url}/api/story/like/${storyId}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": localStorage.getItem("auth-token"), // Use dynamic token
+          },
+        });
+    
+        const data = await response.json();
+        if (data.success) {
+          // Update the likes count in the frontend
+          setStories((prevStories) =>
+            prevStories.map((story) =>
+              story._id === storyId ? { ...story, likes: data.likes } : story
+            )
+          );
+          alert("Story liked successfully!");
+        } else {
+          alert(data.message || "Failed to like the story");
+        }
+      } catch (error) {
+        console.error("Error liking the story:", error);
+        alert("An error occurred while liking the story");
+      }
+    };
 
   return (
     <div className=" mt-5">
@@ -66,6 +93,12 @@ const PublicStories = () => {
               >
                 See More
               </button>
+              <button
+        className="btn btn-outline-primary ms-2"
+        onClick={() => likeStory(story._id)}
+      >
+        Likes ({story.likes})
+      </button>
               </div>
             </div>
           </div>

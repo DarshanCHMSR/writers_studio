@@ -2,6 +2,7 @@ import express from "express";
 import { body, validationResult } from "express-validator";
 import requiresignin from "../middleware/requiresignin.js";
 import Story from "../models/Story.js";
+import PDFDocument from "pdfkit";
 
 const router = express.Router();
 
@@ -215,5 +216,38 @@ router.put(
     }
   }
 );
+// Route 8:downloading : get "/api/story/storypdf/:id". Login required
 
+// Route: Download a story as a PDF
+router.get("/storypdf/:id", requiresignin, async (req, res) => {
+  try {
+    const story = await Story.findById(req.params.id);
+    if (!story) {
+      return res.status(404).send("Story not found");
+    }
+
+    const doc = new PDFDocument();
+    res.setHeader("Content-Type", "application/pdf");
+    res.setHeader("Content-Disposition", `attachment; filename=${story.title || "story"}.pdf`);
+
+    // Pipe the PDF to the response
+    doc.pipe(res);
+
+    // Add content to the PDF
+    doc.fontSize(18).text("Story Details", { align: "center" });
+    doc.moveDown();
+    doc.fontSize(12).text(`Author: ${story.author}`);
+    doc.text(`Title: ${story.title}`);
+    doc.text(`Description: ${story.description}`);
+    doc.text(`Story: ${story.story}`);
+    doc.text(`Created At: ${story.createdAt}`);
+    doc.moveDown();
+
+    // Finalize the PDF
+    doc.end();
+  } catch (error) {
+    console.error("Error generating PDF:", error);
+    res.status(500).send("Failed to generate PDF");
+  }
+});
 export default router;

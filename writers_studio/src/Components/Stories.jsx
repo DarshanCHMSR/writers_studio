@@ -69,7 +69,67 @@ const Stories = () => {
       alert("An error occurred while making the story public");
     }
   };
-
+  const likeStory = async (storyId) => {
+    try {
+      const response = await fetch(`${url}/api/story/like/${storyId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": localStorage.getItem("auth-token"), // Use dynamic token
+        },
+      });
+  
+      const data = await response.json();
+      if (data.success) {
+        // Update the likes count in the frontend
+        setStories((prevStories) =>
+          prevStories.map((story) =>
+            story._id === storyId ? { ...story, likes: data.likes } : story
+          )
+        );
+        alert("Story liked successfully!");
+      } else {
+        alert(data.message || "Failed to like the story");
+      }
+    } catch (error) {
+      console.error("Error liking the story:", error);
+      alert("An error occurred while liking the story");
+    }
+  };
+  const handleDownload = async (storyId) => {
+    try {
+      const response = await fetch(`${url}/api/story/storypdf/${storyId}`, {
+        method: "GET",
+        headers: {
+          "Authorization": localStorage.getItem("auth-token"), // Use dynamic token
+        },
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to fetch the PDF");
+      }
+  
+      // Convert the response to a Blob
+      const blob = await response.blob();
+  
+      // Create a URL for the Blob
+      const url3 = window.URL.createObjectURL(blob);
+  
+      // Create a link element and trigger the download
+      const link = document.createElement("a");
+      link.href = url3;
+      link.setAttribute("download", "story.pdf"); // File name
+      document.body.appendChild(link);
+      link.click();
+  
+      // Cleanup
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url3);
+    } catch (error) {
+      console.error("Error downloading the file:", error);
+      alert("Failed to download the PDF. Please try again.");
+    }
+  };
   return (
     <div className=" mt-5">
       <h1 className="h1 text-center mb-4" style={{ marginTop: "6rem" }}>
@@ -97,6 +157,31 @@ const Stories = () => {
       >
         {story.status===true ? ("Published"):"Make Public"}
       </button>
+      <button
+        className="btn btn-outline-primary ms-2"
+        onClick={() => likeStory(story._id)}
+      >
+        Likes ( {story.likes} )
+      </button>
+      <button
+  className="btn"
+  onClick={() => handleDownload(story._id)}
+  style={{
+    flex: 1,
+    margin: "0,5px",
+    marginTop: "20px",
+    padding: "10px",
+    border: "none",
+    borderRadius: "5px",
+    backgroundColor: "#007BFF",
+    color: "white",
+    fontSize: "16px",
+    cursor: "pointer",
+    transition: "all 0.3s ease",
+  }}
+>
+  Download story
+</button>
             </div>
           </div>
         ))
