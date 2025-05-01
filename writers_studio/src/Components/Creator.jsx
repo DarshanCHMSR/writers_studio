@@ -132,7 +132,7 @@ const email=localStorage.getItem('email')
       </div>
       
     </div>
-    <div className=" my-3 fixed-bottom" style={{ position: 'fixed', bottom: '0', width: '100%', backgroundColor: '#f8f9fa', padding: '10px' }}>
+    <div >
      
     <button
         onClick={handleSave}

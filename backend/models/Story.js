@@ -8,6 +8,10 @@ const StorySchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
   },
+  author: {
+    type: String,
+    required: true,
+  },
   title: {
     type: String,
     required: true,
