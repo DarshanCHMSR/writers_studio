@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import ReactQuill from "react-quill";
 import { useNavigate } from "react-router-dom";
 import "react-quill/dist/quill.snow.css"; // Import Quill's CSS
-import { set } from "mongoose";
 
 const Creator = () => {
   const navigate = useNavigate();
