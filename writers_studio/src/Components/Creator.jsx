@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReactQuill from "react-quill";
 import { useNavigate } from "react-router-dom";
 import "react-quill/dist/quill.snow.css"; // Import Quill's CSS
-
+import { url } from "./data-link/url"; // Import the URL from the data-link file
 const Creator = () => {
   const navigate = useNavigate();
   useEffect(() => {

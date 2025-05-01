@@ -28,6 +28,20 @@ const StorySchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  likes: {
+    type: Number,
+    default: 0,
+  },
+  likedBy: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "user",
+    },
+  ],
+    status:{
+      type: Boolean,
+      default: false,
+    }
 });
 
 const Story = mongoose.model("story", StorySchema);

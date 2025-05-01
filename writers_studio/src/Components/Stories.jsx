@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../css/stories.css";
 import { useNavigate } from "react-router-dom";
+import { url } from "./data-link/url"; // Import the URL from the data-link file
 
 const Stories = () => {
   const [stories, setStories] = useState([]); // State to store fetched stories
@@ -18,7 +19,7 @@ const Stories = () => {
 
   const fetchStories = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/story/fetchallstories", {
+      const response = await fetch(`${url}/api/story/fetchallstories`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -57,13 +58,15 @@ const Stories = () => {
             <div className="card-body">
               <h5 className="card-title">Author: {story.author}</h5>
               <p className="card-text">{story.description}</p>
+              <div className="card__form">
               <button
-                className="btn btn-primary"
+                className="card__button"
                 onClick={() => openModal(story)}
                 data-bs-toggle="modal" data-bs-target="#staticBackdrop"
               >
                 See More
               </button>
+              </div>
             </div>
           </div>
         ))
@@ -74,28 +77,22 @@ const Stories = () => {
       {/* Bootstrap Modal */}
       {selectedStory && (
 
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h1 className="modal-title fs-5" id="staticBackdropLabel">{selectedStory.title}</h1>
+        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex voluptates sunt aliquid voluptatibus, minima pariatur nisi maiores! Voluptatem minus, maxime porro quos inventore, natus expedita ex, earum praesentium odit officia.
-        Corporis ad blanditiis quasi deleniti sit voluptate repellendus omnis aut a ullam cupiditate, reprehenderit asperiores dolore minus similique incidunt ea laudantium. Accusantium, dolore. Ab rerum consectetur dolorem, at commodi ipsa.
-        Nulla temporibus dolores corporis, perspiciatis fugit recusandae dolor, iusto tempora quos dicta culpa odio ex, incidunt dolorem libero quisquam? Ea maiores excepturi, aliquid nostrum eos consectetur odit vel. Dolore, nam!
-        Dolorum nihil quisquam laborum aperiam ad eos ratione nisi! Vitae dolores architecto beatae incidunt debitis explicabo odio unde consequuntur dolorum? Delectus cumque iure quod beatae eligendi ipsum aperiam, adipisci nulla.
-        Asperiores molestiae magnam maiores nihil harum aut similique incidunt rem, corrupti sunt esse eaque quo quidem molestias accusamus iusto. Dolores omnis facere id ipsum. Pariatur cum nisi hic tempore dolorem.
-        Odit, tempore. Pariatur consequatur perferendis culpa sit, in non autem facilis nemo enim deleniti tempora, facere corporis voluptatem dignissimos ex, ea laboriosam fugit quia ad suscipit ab id praesentium debitis?
-        Minus porro temporibus eos repudiandae vel et quia blanditiis nihil omnis aspernatur, sunt cumque? Quisquam esse aspernatur iure, unde velit ipsam. Id esse nam omnis recusandae, doloremque hic dignissimos eius!
-        Quis reiciendis excepturi quasi maxime possimus fuga autem voluptatibus voluptas! Deleniti eius cumque tempore quod assumenda in ipsum aperiam, voluptates veritatis quia repellat incidunt rem doloremque enim, tenetur vero magnam.
-        Aliquam optio, aspernatur ut minus fugit quod nulla eius cupiditate repellendus deserunt nemo non omnis molestias hic iste, libero laudantium, minima asperiores. Reiciendis porro consectetur, incidunt voluptas atque molestiae officia.
+      <div className="modal-body">
+      <p><strong>Author:</strong> {selectedStory.author}</p>
+                <p><strong>Description:</strong> {selectedStory.description}</p>
+                <p><strong>Story:</strong> {selectedStory.story}</p>
 
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
+      <div className="modal-footer">
+        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        {/* <button type="button" className="btn btn-primary">Understood</button> */}
       </div>
     </div>
   </div>

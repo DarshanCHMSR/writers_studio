@@ -24,6 +24,12 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  likedStories: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "story",
+    },
+  ],
 });
 
 const User = mongoose.model("user", UserSchema);

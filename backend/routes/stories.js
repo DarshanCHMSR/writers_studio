@@ -126,5 +126,93 @@ router.delete(
     }
   }
 );
+// Route 5: Update an existing Story using : PUT "/api/story/publicstory/:id". Login required
+router.put(
+  "/publicstory/:id",
+  requiresignin,
+  async (req, res) => {
+    let success = false;
+    const { status } = req.body;
+
+    try {
+      // Create a new Story object
+      const newStory = {};
+      if (status) newStory.status = status;
+
+      // Find the Story to be updated and update it
+      let story = await Story.findById(req.params.id);
+      if (!story) {
+        return res.status(404).send("Not found");
+      }
+
+      // Allow update only if the user owns this Story
+      if (story.user.toString() !== req.user.id) {
+        return res.status(401).send("Not Allowed");
+      }
+
+      story = await Story.findByIdAndUpdate(
+        req.params.id,
+        { $set: newStory },
+        { new: true }
+      );
+      success = true;
+      res.json({ success,story });
+    } catch (error) {
+      console.error(error.message);
+      res.status(500).send("Internal server error");
+    }
+  }
+);
+// Route 6: fetching the public stories "/api/story/publicstories". Login required
+router.get("/publicstories", requiresignin, async (req, res) => {
+  try {
+    const story = await Story.find({ status: true });
+    res.json(story);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Internal server error");
+  }
+});
+// Route 7: Update an existing Story using : PUT "/api/story/like/:id". Login required
+router.put(
+  "/like/:id",
+  requiresignin,
+  async (req, res) => {
+    let success = false;
+
+    try {
+
+
+      // Find the Story to be updated and update it
+      let story = await Story.findById(req.params.id);
+      if (!story) {
+        return res.status(404).send("Not found");
+      }
+        // Check if the user has already liked the story
+    if (story.likedBy.includes(req.user.id)) {
+      return res.status(400).json({ success, message: "You have already liked this story" });
+    }
+
+    // Increment the likes count and add the user's ID to the likedBy array
+    story.likes += 1;
+    story.likedBy.push(req.user.id);
+
+      // Create a new Story object
+      const newStory = {};
+      if (story.likes) newStory.likes = story.likes;
+      if (story.likedBy) newStory.likedBy = story.likedBy;
+      story = await Story.findByIdAndUpdate(
+        req.params.id,
+        { $set: newStory },
+        { new: true }
+      );
+      success = true;
+      res.json({ success,story });
+    } catch (error) {
+      console.error(error.message);
+      res.status(500).send("Internal server error");
+    }
+  }
+);
 
 export default router;
