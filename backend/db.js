@@ -1,17 +1,16 @@
 import mongoose from "mongoose";
-import dotenv from "dotenv";
-dotenv.config();
 
 const connectToMongo = async () => {
   try {
+    mongoose.set('strictQuery', true); // Suppress the warning by explicitly setting strictQuery
     await mongoose.connect(process.env.MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
     console.log("Connected to MongoDB");
   } catch (error) {
-    console.error("Error connecting to MongoDB:", error.message);
-    process.exit(1);
+    console.error("MongoDB connection failed:", error.message);
+    process.exit(1); // Exit the process if the connection fails
   }
 };
 
