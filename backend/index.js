@@ -5,7 +5,6 @@ import authRoutes from "./routes/auth.js";
 import storiesRoutes from "./routes/stories.js";
 
 const app = express();
-const PORT = process.env.PORT || 5000;
 
 // Connect to MongoDB
 connectToMongo();
@@ -21,7 +20,7 @@ app.use(cors({
 app.use(express.json());
 
 // Routes
-app.get('/health', (req, res) => {
+app.get('/', (req, res) => {
   res.send('Welcome to the Writers Studio API');
 });
 app.use("/api/auth", authRoutes);
@@ -33,7 +32,5 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: "Internal Server Error" });
 });
 
-// Start the Server
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// Export the app for Vercel
+export default app;
