@@ -3,7 +3,7 @@ import "../css/stories.css";
 import { useNavigate } from "react-router-dom";
 import { url } from "./data-link/url"; // Import the URL from the data-link file
 
-const Stories = () => {
+const PublicStories = () => {
   const [stories, setStories] = useState([]); // State to store fetched stories
   const [error, setError] = useState(""); // State to store error messages
   const [selectedStory, setSelectedStory] = useState(null); // State to track the selected story for the modal
@@ -19,14 +19,12 @@ const Stories = () => {
 
   const fetchStories = async () => {
     try {
-      
-      const response = await fetch(`${url}/api/story/fetchallstories`, {
+      const response = await fetch(`${url}/api/story/publicstories`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
           "Authorization": localStorage.getItem("auth-token"), // Use dynamic token
         },
-
       });
       const data = await response.json();
       if (response.ok) {
@@ -46,28 +44,6 @@ const Stories = () => {
 
   const closeModal = () => {
     setSelectedStory(null); // Clear the selected story when the modal is closed
-  };
-  const makeStoryPublic = async (storyId) => {
-    try {
-      const response = await fetch(`${url}/api/story/publicstory/${storyId}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": localStorage.getItem("auth-token"), // Use dynamic token
-        },
-      });
-  
-      const data = await response.json();
-      if (data.success) {
-        alert("Story is now public!");
-        fetchStories(); // Refresh the stories list
-      } else {
-        alert(data.message || "Failed to make the story public");
-      }
-    } catch (error) {
-      console.error("Error making story public:", error);
-      alert("An error occurred while making the story public");
-    }
   };
 
   return (
@@ -91,12 +67,6 @@ const Stories = () => {
                 See More
               </button>
               </div>
-              <button
-        className="btn btn-success ms-2"
-        onClick={() => makeStoryPublic(story._id)}
-      >
-        {story.status===true ? ("Published"):"Make Public"}
-      </button>
             </div>
           </div>
         ))
@@ -132,6 +102,6 @@ const Stories = () => {
   );
 };
 
-export default Stories;
+export default PublicStories;
 
 

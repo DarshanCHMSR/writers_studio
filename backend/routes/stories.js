@@ -132,12 +132,10 @@ router.put(
   requiresignin,
   async (req, res) => {
     let success = false;
-    const { status } = req.body;
 
     try {
       // Create a new Story object
-      const newStory = {};
-      if (status) newStory.status = status;
+      
 
       // Find the Story to be updated and update it
       let story = await Story.findById(req.params.id);
@@ -149,6 +147,9 @@ router.put(
       if (story.user.toString() !== req.user.id) {
         return res.status(401).send("Not Allowed");
       }
+      const newStory = {};
+      story.status = "true";
+      if (story.status) newStory.status = story.status;
 
       story = await Story.findByIdAndUpdate(
         req.params.id,
