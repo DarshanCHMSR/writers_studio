@@ -21,7 +21,7 @@ app.use(cors({
 app.use(express.json());
 
 // Routes
-app.get('/', (req, res) => {
+app.get('/health', (req, res) => {
   res.send('Welcome to the Writers Studio API');
 });
 app.use("/api/auth", authRoutes);
