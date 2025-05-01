@@ -30,7 +30,9 @@ router.post(
       min: 1,
     }),
   ],
+  
   async (req, res) => {
+    let success = false;
     try {
       const { title, description,story,author } = req.body;
 
@@ -51,7 +53,8 @@ router.post(
 
       // Save the Story
       const savedStory = await stories.save();
-      res.json(savedStory);
+      success = true;
+      res.json({success,savedStory});
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Internal server error");
@@ -89,7 +92,8 @@ router.put(
         { $set: newStory },
         { new: true }
       );
-      res.json({ story });
+      success = true;
+      res.json({ success,story });
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Internal server error");

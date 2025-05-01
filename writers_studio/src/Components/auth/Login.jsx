@@ -22,9 +22,9 @@ const Login = () => {
       });
 
       const data = await response.json();
-      console.log(data); // Log the response data for debugging
       if (response.ok) {
         // Save the auth token and redirect to the dashboard
+        localStorage.setItem('auth-token', data.authtoken); // Save the auth token  
         localStorage.setItem('email', data.user.email); // Save email if needed
         navigate('/creator'); // Redirect to the dashboard or another page
       } else {

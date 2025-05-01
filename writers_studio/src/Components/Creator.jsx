@@ -134,7 +134,7 @@ const Creator = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data) {
+        if (data.success) {
           alert("Story saved successfully!");
           setText(""); // Clear the editor after saving
           setTitle(""); // Clear the title input
@@ -152,23 +152,14 @@ const Creator = () => {
   return (
     <>
       <div>
-        <p
-          style={{
-            textAlign: "center",
-            fontSize: "2.5rem",
-            marginTop: "7rem",
-            marginBottom: "2.5rem",
-            fontWeight: "600",
-          }}
-        >
-          Create Your own Stories
-        </p>
-        <h1>User Info:</h1>
-        <p>
+      <div className="text-center mb-4" style={{marginTop:"5rem"}}>
+        <h1 className="display-4 mt-5" >Create Your Own Stories</h1>
+        <p className="lead">
           Welcome <strong>{user}</strong> to the Writer's Studio. Start writing
           your story below:
         </p>
-        <p>Your Email : {email}</p>
+        <p>Your Email: <strong>{email}</strong></p>
+      </div>
         <input
           placeholder="Enter the title of the story "
           value={title}
@@ -196,20 +187,8 @@ const Creator = () => {
         </div>
       </div>
       <div>
-        <button
-          onClick={handleSave}
-          className="btn btn-primary mx-2 my-1"
-          style={{
-            marginTop: "20px",
-            padding: "10px 20px",
-            backgroundColor: "#007bff",
-            color: "#fff",
-            border: "none",
-            borderRadius: "5px",
-            cursor: "pointer",
-          }}
-        >
-          Save
+      <button onClick={handleSave} className="btn btn-success mx-2">
+          Save Story
         </button>
         <button
           disabled={Text.length === 0}

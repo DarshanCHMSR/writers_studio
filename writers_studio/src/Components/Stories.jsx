@@ -4,8 +4,9 @@ import { useNavigate } from "react-router-dom";
 
 const Stories = () => {
   const [stories, setStories] = useState([]); // State to store fetched stories
+  const [error, setError] = useState(""); // State to store error messages
   const navigate = useNavigate();
-  const [ss, setSS] = useState(""); // State to store a specific story description
+  const [expandedStoryId, setExpandedStoryId] = useState(null); // State to track the expanded story
 
   useEffect(() => {
     if (!localStorage.getItem("auth-token")) {
@@ -21,40 +22,55 @@ const Stories = () => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjgxMjE3MzdjNzBhMWRhZTc3ZTBjYzE0In0sImlhdCI6MTc0NjAzNjAyMH0.S14jPRtahYzO2AkxTAE-h35467isGCkDGjBdSAbO-yI", // Pass auth token for authentication
+          "Authorization": localStorage.getItem("auth-token"), // Use dynamic token
         },
       });
-
       const data = await response.json();
-      const users=localStorage.getItem("users");
-      console.log(users ) // Store the description in local storage
       if (response.ok) {
-        setSS(data[0].description);
         setStories(data); // Update state with fetched stories
       } else {
-        console.error("Failed to fetch stories:", data.error);
+        setError(data.error || "Failed to fetch stories");
       }
     } catch (error) {
+      setError("An error occurred while fetching stories");
       console.error("Error fetching stories:", error);
     }
   };
-
+  const toggleStory = (id) => {
+    setExpandedStoryId(expandedStoryId === id ? null : id); // Toggle the expanded story
+  };
   return (
-    <div>
-      <h1 className="h1 " style={{marginTop:"6rem"}}>Stories</h1>
+    <div className=" mt-5">
+      <h1 className="h1 text-center mb-4" style={{ marginTop: "6rem" }}>
+        Stories
+      </h1>
+      {error && <p className="text-danger text-center">{error}</p>}
       {stories.length > 0 ? (
         stories.map((story) => (
-          <div className="card" key={ss}>
-            <span className="card__title">Author: {ss}</span>
-            <p className="card__content">{story.content}</p>
-            <form className="card__form">
-              <button className="card__button">See me</button>
-            </form>
+          <div className="card" key={story._id}>
+            <span className="card__title">Author: {story.author}</span>
+            <p className="card__content">{story.description}</p>
+            
+            {expandedStoryId === story._id && (
+                <p className="card-text">
+                  <strong>Story:</strong> {story.story}
+                </p>
+              )}
+              <div className="card__form">
+              <button
+                className="card__button"
+                onClick={() => toggleStory(story._id)}
+              >
+                {expandedStoryId === story._id ? "See Less" : "See More"}
+              </button>
+              </div>
+
           </div>
         ))
       ) : (
-        <p>No stories available</p>
+        !error && <p className="text-center">No stories available</p>
       )}
+      
     </div>
   );
 };
