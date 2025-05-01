@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../../css/signup.css'; 
 import { useNavigate } from 'react-router-dom';
+import {url} from '../data-link/url'; // Import the URL from the data-link file
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -13,7 +14,7 @@ const Login = () => {
     setError(''); // Clear previous errors
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
+      const response = await fetch(`${url}/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

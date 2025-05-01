@@ -123,7 +123,7 @@ const Creator = () => {
       author: "aaaaa",
     };
 
-    fetch("http://localhost:5000/api/story/addstory", {
+    fetch(`${url}/api/story/addstory`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
