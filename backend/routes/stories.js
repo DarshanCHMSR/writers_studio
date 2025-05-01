@@ -25,10 +25,14 @@ router.post(
     body("description", "Description must be at least 5 characters").isLength({
       min: 5,
     }),
+    body("story", "Story must be at least 10 characters").isLength({ min: 10 }),
+    body("author", "Author name must be at least 3 characters").isLength({
+      min: 1,
+    }),
   ],
   async (req, res) => {
     try {
-      const { title, description, tag } = req.body;
+      const { title, description,story,author } = req.body;
 
       // If there are errors, return bad requests and the errors
       const errors = validationResult(req);
@@ -37,15 +41,16 @@ router.post(
       }
 
       // Create a new Story
-      const story = new Story({
+      const stories = new Story({
         title,
         description,
-        tag,
+        story,
+        author,
         user: req.user.id,
       });
 
       // Save the Story
-      const savedStory = await story.save();
+      const savedStory = await stories.save();
       res.json(savedStory);
     } catch (error) {
       console.error(error.message);

@@ -20,9 +20,9 @@ const StorySchema = new Schema({
     type: String,
     required: true,
   },
-  tag: {
+  story: {
     type: String,
-    default: "general",
+    required: true,
   },
   date: {
     type: Date,
