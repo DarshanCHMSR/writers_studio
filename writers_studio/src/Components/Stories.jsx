@@ -167,8 +167,12 @@ const Stories = () => {
         stories.map((story) => (
           <div className="card mb-3" key={story._id}>
             <div className="card-body">
-              <h5 className="card-title">Author: {story.author}</h5>
+              <h5 className="card-title"><span class="card__title">Author: {story.author}  </span>
+              </h5>              
+              <p style={{margin:'0'}}>Title: {story.title}  </p>
+
               <p className="card-text">{story.description}</p>
+              
              <div className="d-flex justify-content-between align-items-center">
               <button
                 className="btn btn-primary"

@@ -117,6 +117,7 @@ const PublicStories = () => {
           <div className="card mb-3" key={story._id}>
             <div className="card-body">
               <h5 className="card-title">Author: {story.author}</h5>
+              <p style={{margin:'0'}}>Title: {story.title}  </p>
               <p className="card-text">{story.description}</p>
              
               <button

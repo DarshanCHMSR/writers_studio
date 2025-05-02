@@ -113,7 +113,7 @@ const Creator = () => {
       title: title,
       description: description,
       story:  normal, // Use the text from the editor
-      author: "aaaaa",
+      author: name,
     };
 
     fetch(`${url}/api/story/addstory`, {
