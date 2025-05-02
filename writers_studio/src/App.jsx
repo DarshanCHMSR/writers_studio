@@ -15,6 +15,7 @@ import Home from "./Components/Home";
 import Creator from "./Components/Creator";
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import PublicStories from "./Components/PublicStories";
+import EditStory from "./Components/EditStory";
 
 function Homes() {
   return (
@@ -46,6 +47,7 @@ function App() {
         <Route path="/testimonials" element={<Testimonial />} />
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/creator" element={<Creator />} />
+        <Route path="/editstory/:id" element={<Creator />} />
       </Routes>
       <Footer />
     </Router>

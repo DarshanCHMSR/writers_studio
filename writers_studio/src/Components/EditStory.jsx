@@ -3,7 +3,7 @@ import ReactQuill from "react-quill";
 import { useNavigate } from "react-router-dom";
 import "react-quill/dist/quill.snow.css"; // Import Quill's CSS
 import { url } from "./data-link/url"; // Import the URL from the data-link file
-const Creator = () => {
+const EditStory = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (localStorage.getItem("auth-token")) {
@@ -13,34 +13,25 @@ const Creator = () => {
     }
     // eslint-disable-next-line
   }, []);
-  const handleTextChange = (value) => {
-    setText(value); // Update the Text state with the new value from the editor
-    const convertHtmlToText = (html) => {
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, "text/html");
-      return doc.body.textContent || "";
-    };
-    
-    // Usage in your component
-     setNormal(convertHtmlToText(Text)); // Convert the HTML in `Text` to plain text
-  
-  }
   const user = localStorage.getItem("user");
   const email = localStorage.getItem("email");
   const handleUpClick = () => {
-    let newText = normal.toUpperCase();
+    let newText = Text.toUpperCase();
     setText(newText);
+    props.showAlert("Converted to uppercase", "success");
   };
   const handleLoClick = () => {
-    let newText = normal.toLowerCase();
+    let newText = Text.toLowerCase();
     setText(newText);
+    props.showAlert("Converted to lowercase", "success");
   };
   const handleClearText = () => {
     let newText = "";
     setText(newText);
+    props.showAlert("Text has been Cleared", "success");
   };
   const speak = () => {
-    let msg = new SpeechSynthesisUtterance(normal);
+    let msg = new SpeechSynthesisUtterance(Text);
     window.speechSynthesis.speak(msg);
     const toogle = document.getElementById("toggle");
     if (toogle.textContent === "Speak") {
@@ -53,19 +44,22 @@ const Creator = () => {
     }
   };
   const handleCopy = () => {
-    var normal = document.getElementById("myBox");
-    normal.select();
-    navigator.clipboard.writeText(normal.value);
+    var Text = document.getElementById("myBox");
+    Text.select();
+    navigator.clipboard.writeText(Text.value);
     document.getSelection().removeAllRanges();
+    props.showAlert("Copied to clipboard", "success");
   };
 
   const handleExtraSpaces = () => {
-    let newText = normal.split(/[ ]+/);
+    let newText = Text.split(/[ ]+/);
     setText(newText.join(" "));
+    props.showAlert("Removed Extraspaces ", "success");
   };
   const handleExtraLines = () => {
-    let newText = normal.split(/\s+/);
+    let newText = Text.split(/\s+/);
     setText(newText.join(" "));
+    props.showAlert("Removed Extraspaces ", "success");
   };
 
   // Quill modules for toolbar customization
@@ -107,7 +101,19 @@ const Creator = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState(""); // State to store the description
 
- 
+  const handleTextChange = (value) => {
+    setText(value); // Update the Text state with the new value from the editor
+    const convertHtmlToText = (html) => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, "text/html");
+      return doc.body.textContent || "";
+    };
+    
+    // Usage in your component
+     setNormal(convertHtmlToText(Text)); // Convert the HTML in `Text` to plain text
+    console.log(normal); // Logs the plain text version of the HTML
+  
+  }
  
   const handleSave = () => {
     const storyData = {
@@ -180,9 +186,7 @@ const Creator = () => {
         </div>
       </div>
       <div>
-      <button onClick={handleSave}
-                disabled={Text.length === 0} 
-      className="btn btn-success mx-2">
+      <button onClick={handleSave} className="btn btn-success mx-2">
           Save Story
         </button>
         <button
@@ -241,18 +245,18 @@ const Creator = () => {
         <div className="container my-3">
           <h2>Your Text Summary</h2>
           <p>
-            {normal.trim().length === 0
+            {Text.trim().length === 0
               ? 0
-              : normal.split(/\s+/).filter((element) => element.length !== 0)
+              : Text.split(/\s+/).filter((element) => element.length !== 0)
                   .length}{" "}
-            words and {normal.length} characters
+            words and {Text.length} characters
           </p>
           <p>
-            {normal.trim().length === 0
+            {Text.trim().length === 0
               ? 0
               : (
                   0.008 *
-                  normal.split(/\s+/).filter((element) => element.length !== 0)
+                  Text.split(/\s+/).filter((element) => element.length !== 0)
                     .length
                 ).toFixed(2)}{" "}
             minutes to read
@@ -263,4 +267,4 @@ const Creator = () => {
   );
 };
 
-export default Creator;
+export default EditStory;

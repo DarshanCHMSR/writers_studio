@@ -130,6 +130,33 @@ const Stories = () => {
       alert("Failed to download the PDF. Please try again.");
     }
   };
+  const handleDelete = async (storyId) => {
+    if (window.confirm("Are you sure you want to delete this story?")) {
+      try {
+        const response = await fetch(`${url}/api/story/deletestory/${storyId}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": localStorage.getItem("auth-token"), // Use dynamic token
+          },
+        });
+  
+        const data = await response.json();
+        if (data.success) {
+          alert("Story deleted successfully!");
+          fetchStories(); // Refresh the stories list
+        } else {
+          alert(data.message || "Failed to delete the story");
+        }
+      } catch (error) {
+        console.error("Error deleting the story:", error);
+        alert("An error occurred while deleting the story");
+      }
+    }
+  }
+  const handleEdit = (storyId) => {
+    navigate(`/editstory/${storyId}`); // Navigate to the edit story page
+  };  
   return (
     <div className=" mt-5">
       <h1 className="h1 text-center mb-4" style={{ marginTop: "6rem" }}>
@@ -142,15 +169,14 @@ const Stories = () => {
             <div className="card-body">
               <h5 className="card-title">Author: {story.author}</h5>
               <p className="card-text">{story.description}</p>
-              <div className="card__form">
+             <div className="d-flex justify-content-between align-items-center">
               <button
-                className="card__button"
+                className="btn btn-primary"
                 onClick={() => openModal(story)}
                 data-bs-toggle="modal" data-bs-target="#staticBackdrop"
               >
                 See More
               </button>
-              </div>
               <button
         className="btn btn-success ms-2"
         onClick={() => makeStoryPublic(story._id)}
@@ -164,24 +190,22 @@ const Stories = () => {
         Likes ( {story.likes} )
       </button>
       <button
-  className="btn"
+  className="btn btn-outline-success ms-2"
   onClick={() => handleDownload(story._id)}
-  style={{
-    flex: 1,
-    margin: "0,5px",
-    marginTop: "20px",
-    padding: "10px",
-    border: "none",
-    borderRadius: "5px",
-    backgroundColor: "#007BFF",
-    color: "white",
-    fontSize: "16px",
-    cursor: "pointer",
-    transition: "all 0.3s ease",
-  }}
 >
   Download story
 </button>
+<button
+  className="btn btn-outline-danger ms-2"
+  onClick={() => handleDelete(story._id)}
+>
+  Delete story
+</button>
+<button
+  className="btn btn-outline-warning ms-2"
+  onClick={() => handleEdit(story._id)}
+        >Edit story</button>
+            </div>
             </div>
           </div>
         ))

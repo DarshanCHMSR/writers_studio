@@ -72,7 +72,40 @@ const PublicStories = () => {
         alert("An error occurred while liking the story");
       }
     };
-
+  const handleDownload = async (storyId) => {
+    try {
+      const response = await fetch(`${url}/api/story/storypdf/${storyId}`, {
+        method: "GET",
+        headers: {
+          "Authorization": localStorage.getItem("auth-token"), // Use dynamic token
+        },
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to fetch the PDF");
+      }
+  
+      // Convert the response to a Blob
+      const blob = await response.blob();
+  
+      // Create a URL for the Blob
+      const url3 = window.URL.createObjectURL(blob);
+  
+      // Create a link element and trigger the download
+      const link = document.createElement("a");
+      link.href = url3;
+      link.setAttribute("download", "story.pdf"); // File name
+      document.body.appendChild(link);
+      link.click();
+  
+      // Cleanup
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url3);
+    } catch (error) {
+      console.error("Error downloading the file:", error);
+      alert("Failed to download the PDF. Please try again.");
+    }
+  };
   return (
     <div className=" mt-5">
       <h1 className="h1 text-center mb-4" style={{ marginTop: "6rem" }}>
@@ -85,9 +118,9 @@ const PublicStories = () => {
             <div className="card-body">
               <h5 className="card-title">Author: {story.author}</h5>
               <p className="card-text">{story.description}</p>
-              <div className="card__form">
+             
               <button
-                className="card__button"
+                className="btn btn-primary"
                 onClick={() => openModal(story)}
                 data-bs-toggle="modal" data-bs-target="#staticBackdrop"
               >
@@ -99,7 +132,12 @@ const PublicStories = () => {
       >
         Likes ({story.likes})
       </button>
-              </div>
+      <button
+  className="btn btn-outline-success ms-2"  
+  onClick={() => handleDownload(story._id)}
+>
+  Download story
+</button>
             </div>
           </div>
         ))
