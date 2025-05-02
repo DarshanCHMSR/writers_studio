@@ -47,7 +47,7 @@ function App() {
         <Route path="/testimonials" element={<Testimonial />} />
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/creator" element={<Creator />} />
-        <Route path="/editstory/:id" element={<Creator />} />
+        <Route path="/editstory/:id" element={<EditStory />} />
       </Routes>
       <Footer />
     </Router>

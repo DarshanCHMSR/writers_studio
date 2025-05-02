@@ -218,7 +218,6 @@ router.put(
 );
 // Route 8:downloading : get "/api/story/storypdf/:id". Login required
 
-// Route: Download a story as a PDF
 router.get("/storypdf/:id", requiresignin, async (req, res) => {
   try {
     const story = await Story.findById(req.params.id);
@@ -248,6 +247,24 @@ router.get("/storypdf/:id", requiresignin, async (req, res) => {
   } catch (error) {
     console.error("Error generating PDF:", error);
     res.status(500).send("Failed to generate PDF");
+  }
+});
+
+// Route 9: Get the Story based on the id using : GET "/api/story/getstory/:id". Login required
+router.get("/getstory/:id", requiresignin, async (req, res) => {
+  try {
+    let success = false;
+    const story = await Story.findById(req.params.id).find({ user: req.user.id });
+    if (!story) {
+      return res.status(404).send("Not found");
+    }
+    // Allow update only if the user owns this Story
+   
+    success = true;
+    res.json({story, success });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Internal server error");
   }
 });
 export default router;
