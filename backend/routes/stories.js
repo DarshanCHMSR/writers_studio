@@ -68,33 +68,34 @@ router.put(
   "/updatestory/:id",
   requiresignin,
   async (req, res) => {
-    const { title, description, tag } = req.body;
+    const { title, description,story,author } = req.body;
 
     try {
       // Create a new Story object
       const newStory = {};
       if (title) newStory.title = title;
       if (description) newStory.description = description;
-      if (tag) newStory.tag = tag;
+      if (story) newStory.story = story;
+      if (author) newStory.author = author;
 
       // Find the Story to be updated and update it
-      let story = await Story.findById(req.params.id);
-      if (!story) {
+      let stor = await Story.findById(req.params.id);
+      if (!stor) {
         return res.status(404).send("Not found");
       }
 
       // Allow update only if the user owns this Story
-      if (story.user.toString() !== req.user.id) {
+      if (stor.user.toString() !== req.user.id) {
         return res.status(401).send("Not Allowed");
       }
 
-      story = await Story.findByIdAndUpdate(
+      stor = await Story.findByIdAndUpdate(
         req.params.id,
         { $set: newStory },
         { new: true }
       );
       success = true;
-      res.json({ success,story });
+      res.json({ success,stor });
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Internal server error");
