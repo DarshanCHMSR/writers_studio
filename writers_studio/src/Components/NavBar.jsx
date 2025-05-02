@@ -52,17 +52,17 @@ const NavBar = () => {
               </li>
               <li className={`nav-item ${location.pathname === "/stories" ? "active" : ""}`}>
                 <Link className="nav-link" to="/stories">
-                  Your Stories
+                MyScriptVault
                 </Link>
               </li>
               <li className={`nav-item ${location.pathname === "/creator" ? "active" : ""}`}>
                 <Link className="nav-link" to="/creator">
-                  Create Your Story
+                StoryForge  
                 </Link>
               </li>
               <li className={`nav-item ${location.pathname === "/publicstories" ? "active" : ""}`}>
                 <Link className="nav-link" to="/publicstories">
-                  Public Stories
+                StoryHub
                 </Link>
               </li>
               <li className={`nav-item ${location.pathname === "/testimonials" ? "active" : ""}`}>

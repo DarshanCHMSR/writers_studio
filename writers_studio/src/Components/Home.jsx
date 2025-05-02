@@ -4,14 +4,12 @@ import About from "./About";
 import ContactUs from "./ContactUs";
 import Testimonial from "./Testimonial";
 import Services from "./Services";
-import Stories from "./Stories";
 
 const Home = () => {
     return (
       <>
         <Banner />
         <About />
-        <Stories />
         <Services />
         <Testimonial />
         <ContactUs />

@@ -27,6 +27,7 @@ const Login = () => {
         // Save the auth token and redirect to the dashboard
         localStorage.setItem('auth-token', data.authtoken); // Save the auth token  
         localStorage.setItem('email', data.user.email); // Save email if needed
+        localStorage.setItem('name', data.user.firstname); // Save name if needed
         navigate('/creator'); // Redirect to the dashboard or another page
       } else {
         setError(data.error || 'Invalid credentials');

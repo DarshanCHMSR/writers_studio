@@ -5,27 +5,30 @@ import "react-quill/dist/quill.snow.css"; // Import Quill's CSS
 import { url } from "./data-link/url"; // Import the URL from the data-link file
 const Creator = () => {
   const navigate = useNavigate();
+  const [Text, setText] = useState("");
+  const [normal, setNormal] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState(""); // State to store the description
+
   useEffect(() => {
+    const convertHtmlToText = (html) => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, "text/html");
+      return doc.body.textContent || "";
+    };
+  
+    setNormal(convertHtmlToText(Text));
     if (localStorage.getItem("auth-token")) {
       // User is authenticated, proceed with the component logic
     } else {
       navigate("/login");
     }
     // eslint-disable-next-line
-  }, []);
+  }, [Text]);
   const handleTextChange = (value) => {
-    setText(value); // Update the Text state with the new value from the editor
-    const convertHtmlToText = (html) => {
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, "text/html");
-      return doc.body.textContent || "";
-    };
-    
-    // Usage in your component
-     setNormal(convertHtmlToText(Text)); // Convert the HTML in `Text` to plain text
-  
-  }
-  const user = localStorage.getItem("user");
+    setText(value); // Update the `Text` state with the new value from the editor
+  };
+  const name = localStorage.getItem("name");
   const email = localStorage.getItem("email");
   const handleUpClick = () => {
     let newText = normal.toUpperCase();
@@ -102,11 +105,7 @@ const Creator = () => {
     "font",
     "align",
   ];
-  const [Text, setText] = useState("");
-  const [normal, setNormal] = useState("");
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState(""); // State to store the description
-
+  
  
  
   const handleSave = () => {
@@ -148,7 +147,7 @@ const Creator = () => {
       <div className="text-center mb-4" style={{marginTop:"5rem"}}>
         <h1 className="display-4 mt-5" >Create Your Own Stories</h1>
         <p className="lead">
-          Welcome <strong>{user}</strong> to the Writer's Studio. Start writing
+          Welcome <strong>{name}</strong> to the Writer's Studio. Start writing
           your story below:
         </p>
         <p>Your Email: <strong>{email}</strong></p>
@@ -239,25 +238,29 @@ const Creator = () => {
         </button>
 
         <div className="container my-3">
-          <h2>Your Text Summary</h2>
-          <p>
-            {normal.trim().length === 0
-              ? 0
-              : normal.split(/\s+/).filter((element) => element.length !== 0)
-                  .length}{" "}
-            words and {normal.length} characters
-          </p>
-          <p>
-            {normal.trim().length === 0
-              ? 0
-              : (
-                  0.008 *
-                  normal.split(/\s+/).filter((element) => element.length !== 0)
-                    .length
-                ).toFixed(2)}{" "}
-            minutes to read
-          </p>
-        </div>
+  <h2>Your Text Summary</h2>
+  <p>
+    {
+      normal
+        .split(/\s+/)
+        .filter((element) => element.length !== 0).length
+    }{" "}
+    words and{" "}
+    {
+      normal.replace(/\s+/g, "").length // Remove spaces before counting characters
+    }{" "}
+    characters
+  </p>
+  <p>
+    {(
+      0.008 *
+      normal
+        .split(/\s+/)
+        .filter((element) => element.length !== 0).length
+    ).toFixed(2)}{" "}
+    minutes to read
+  </p>
+</div>
       </div>
     </>
   );
