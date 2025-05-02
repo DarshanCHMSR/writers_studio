@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const connectToMongo = async () => {
   try {
     mongoose.set('strictQuery', true); // Suppress the warning by explicitly setting strictQuery
-    await mongoose.connect("mongodb+srv://chdarshan562:writersstudio@writersstudio.jki7je0.mongodb.net/", {
+    await mongoose.connect(process.env.MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
