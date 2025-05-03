@@ -8,6 +8,8 @@ const PublicStories = () => {
   const [error, setError] = useState(""); // State to store error messages
   const [selectedStory, setSelectedStory] = useState(null); // State to track the selected story for the modal
   const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState(""); // State to track the search query
+
 
   useEffect(() => {
     if (!localStorage.getItem("auth-token")) {
@@ -37,7 +39,33 @@ const PublicStories = () => {
       console.error("Error fetching stories:", error);
     }
   };
+  const handleSearch = async (query) => {
+    setSearchQuery(query); // Update the search query state
+    if (query.trim() === "") {
+      fetchStories(); // If the query is empty, fetch all stories
+      return;
+    }
 
+    try {
+      const response = await fetch(`${url}/api/story/searchpublicstory/${query}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: localStorage.getItem("auth-token"), // Use dynamic token
+        },
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        setStories(data); // Update state with filtered stories
+      } else {
+        setError(data.error || "Failed to fetch search results");
+      }
+    } catch (error) {
+      setError("An error occurred while searching for stories");
+      console.error("Error searching for stories:", error);
+    }
+  };
   const openModal = (story) => {
     setSelectedStory(story); // Set the selected story for the modal
   };
@@ -111,6 +139,23 @@ const PublicStories = () => {
       <h1 className="h1 text-center mb-4" style={{ marginTop: "6rem" }}>
         Stories
       </h1>
+      <div className="container mb-4">
+  <div className="input-group w-50 mx-auto">
+    <span className="input-group-text bg-primary text-white border border-dark">
+      <i className="bi bi-search"></i>
+    </span>
+    <input
+      type="text"
+      className="form-control border border-dark focus-ring focus-ring-dark"
+      placeholder="Search stories..."
+      value={searchQuery}
+      onChange={(e) => handleSearch(e.target.value)}
+    />
+  </div>
+</div>
+
+
+
       {error && <p className="text-danger text-center">{error}</p>}
       {stories.length > 0 ? (
         stories.map((story) => (

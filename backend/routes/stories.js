@@ -268,4 +268,46 @@ router.get("/getstory/:id", requiresignin, async (req, res) => {
     res.status(500).send("Internal server error");
   }
 });
+// Route 10: Get the Story based on the search filter using : GET "/api/story/searchstory/:query". Login required
+router.get("/searchstory/:query", requiresignin, async (req, res) => {
+  try {
+    const query = req.params.query;
+    const stories = await Story.find({
+      $or: [
+        {author: { $regex: query, $options: "i" } },
+        { title: { $regex: query, $options: "i" } },
+        { description: { $regex: query, $options: "i" } },
+        { story: { $regex: query, $options: "i" } },
+      ],
+    }).find({ user: req.user.id });
+    if (stories.length === 0) {
+      return res.status(404).send("No stories found matching the search criteria");
+    }
+    res.json(stories);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Internal server error");
+  }
+});
+// Route 11: Get the Story based on the search filter for public using : GET "/api/story/searchstory/:query". Login required
+router.get("/searchpublicstory/:query", requiresignin, async (req, res) => {
+  try {
+    const query = req.params.query;
+    const stories = await Story.find({
+      $or: [
+        {author: { $regex: query, $options: "i" } },
+        { title: { $regex: query, $options: "i" } },
+        { description: { $regex: query, $options: "i" } },
+        { story: { $regex: query, $options: "i" } },
+      ],
+    }).find({ status: true });
+    if (stories.length === 0) {
+      return res.status(404).send("No stories found matching the search criteria");
+    }
+    res.json(stories);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Internal server error");
+  }
+});
 export default router;
