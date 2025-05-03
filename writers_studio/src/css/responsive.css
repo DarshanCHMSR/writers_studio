@@ -331,10 +331,14 @@
 
 @media (max-width: 575px) {
     #main_slider a.carousel-control-prev {
-        top: 90%;
+        top: 70%;
+        width: 30px;
+        height: 30px;
     }
     #main_slider a.carousel-control-next {
-        top: 90%;
+        top: 70%;
+        width: 30px;
+        height: 30px;
     }
     .navbar {
         padding: 20px 0px;
@@ -352,9 +356,10 @@
     .banner_taital{
 margin-left: 17vh; 
 margin-top:0 ;
-padding-top: 10vh;
+padding-top: 1vh;
   }
     .banner_section {
+        margin-top: 90px;
         padding: 5px 0px 10px 0px; /* Further reduce padding for very small screens */
         height: 250px; /* Set a fixed height for very small screens */    }
         .learnmore_bt a{
@@ -373,7 +378,7 @@ padding-top: 10vh;
     .there_text {
         width: 100%;
         font-size: 10px;
-        display: none;
+        padding: 0px;
     }
     .there_text strong {
         font-size: 10px;

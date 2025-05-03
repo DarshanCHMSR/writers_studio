@@ -159,7 +159,8 @@ const EditStory = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          alert("Story saved successfully!");
+          alert("Story edited successfully!");
+          navigate("/stories"); // Redirect to the "My Stories" page after saving 
           setText(""); // Clear the editor after saving
           setTitle(""); // Clear the title input
           setDescription(""); // Clear the description input
@@ -213,26 +214,26 @@ const EditStory = () => {
       <div>
       <button onClick={handleSave}
                 disabled={Text.length === 0} 
-      className="btn btn-success mx-2">
+      className="btn btn-success mx-2 responsive-btn">
           Save Story
         </button>
         <button
           disabled={Text.length === 0}
-          className="btn btn-primary mx-2 my-1"
+          className="btn btn-primary mx-2 my-1 responsive-btn"
           onClick={handleUpClick}
         >
           Convert to uppercase
         </button>
         <button
           disabled={Text.length === 0}
-          className="btn btn-primary mx-2 my-1"
+          className="btn btn-primary mx-2 my-1 responsive-btn"
           onClick={handleLoClick}
         >
           Convert to Lowercase
         </button>
         <button
           disabled={Text.length === 0}
-          className="btn btn-primary mx-2 my-1"
+          className="btn btn-primary mx-2 my-1 responsive-btn"
           onClick={handleClearText}
         >
           Clear text
@@ -241,7 +242,7 @@ const EditStory = () => {
           disabled={Text.length === 0}
           type="submit"
           onClick={speak}
-          className="btn btn-warning mx-2 my-2"
+          className="btn btn-warning mx-2 my-2 responsive-btn"
           id="toggle"
         >
           Speak
@@ -249,21 +250,21 @@ const EditStory = () => {
 
         <button
           disabled={Text.length === 0}
-          className="btn btn-primary mx-2 my-1"
+          className="btn btn-primary mx-2 my-1 responsive-btn"
           onClick={handleCopy}
         >
           Copy text
         </button>
         <button
           disabled={Text.length === 0}
-          className="btn btn-primary mx-2 my-1"
+          className="btn btn-primary mx-2 my-1 responsive-btn"
           onClick={handleExtraSpaces}
         >
           Remove ExtraSpaces
         </button>
         <button
           disabled={Text.length === 0}
-          className="btn btn-primary mx-2 my-1"
+          className="btn btn-primary mx-2 my-1 responsive-btn"
           onClick={handleExtraLines}
         >
           Remove Lines

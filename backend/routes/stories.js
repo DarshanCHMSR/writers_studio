@@ -69,7 +69,7 @@ router.put(
   requiresignin,
   async (req, res) => {
     const { title, description,story,author } = req.body;
-
+let success = false;
     try {
       // Create a new Story object
       const newStory = {};

@@ -173,7 +173,7 @@ const Stories = () => {
 
               <p className="card-text">{story.description}</p>
               
-             <div className="d-flex justify-content-between align-items-center">
+             <div className=" justify-content-between align-items-center">
               <button
                 className="btn btn-primary"
                 onClick={() => openModal(story)}
@@ -188,25 +188,25 @@ const Stories = () => {
         {story.status===true ? ("Published"):"Make Public"}
       </button>
       <button
-        className="btn btn-outline-primary ms-2"
+        className="btn btn-outline-primary ms-2 responsive-btn"
         onClick={() => likeStory(story._id)}
       >
         Likes ( {story.likes} )
       </button>
       <button
-  className="btn btn-outline-success ms-2"
+  className="btn btn-outline-success ms-2 responsive-btn"
   onClick={() => handleDownload(story._id)}
 >
   Download story
 </button>
 <button
-  className="btn btn-outline-danger ms-2"
+  className="btn btn-outline-danger ms-2 responsive-btn"
   onClick={() => handleDelete(story._id)}
 >
   Delete story
 </button>
 <button
-  className="btn btn-outline-warning ms-2"
+  className="btn btn-outline-warning ms-2 responsive-btn"
   onClick={() => handleEdit(story._id)}
         >Edit story</button>
             </div>

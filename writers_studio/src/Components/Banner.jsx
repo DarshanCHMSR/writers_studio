@@ -17,7 +17,6 @@ const Banner = () => {
                       <h1 className="coffee_text">Writers Studio</h1>
                       <p className="there_text">
                         <strong>Craft Your Perfect Script with StoryForge – Where Creativity Meets Structure.</strong> 
-                        <br></br>
                         Where Creativity Meets Structure. Unleash your imagination with a platform designed specifically for screenwriters, offering intuitive tools for writing, formatting, and organizing your scripts effortlessly.                      </p>
                       <div className="learnmore_bt">
                         <a href="/creator">Get Started</a>
@@ -34,8 +33,7 @@ const Banner = () => {
                       <h1 className="coffee_text">Writers Studio</h1>
                       <p className="there_text">
                         <strong>Real-time Collaboration | Auto-save & Version History | Professional Script Formatting"</strong>
-                        <br></br>
-                        Write, edit, and collaborate seamlessly with others. Enjoy automated backups, detailed version tracking, and a user-friendly script editor that ensures your work is always perfectly formatted.                      </p>
+                        Write, edit, and collaborate seamlessly with others. Enjoy a user-friendly script editor that ensures your work is always perfectly formatted.</p>
                       <div className="learnmore_bt">
                         <a href="/creator">Get Started</a>
                       </div>
