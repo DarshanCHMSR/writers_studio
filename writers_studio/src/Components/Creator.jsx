@@ -3,6 +3,7 @@ import ReactQuill from "react-quill";
 import { useNavigate } from "react-router-dom";
 import "react-quill/dist/quill.snow.css"; // Import Quill's CSS
 import { url } from "./data-link/url"; // Import the URL from the data-link file
+import "../css/writerscss.css"; // Import your CSS file for styling 
 const Creator = () => {
   const navigate = useNavigate();
   const [Text, setText] = useState("");
@@ -143,126 +144,97 @@ const Creator = () => {
 
   return (
     <>
-      <div>
-      <div className="text-center mb-4" style={{marginTop:"5rem"}}>
-        <h1 className="display-4 mt-5" >Create Your Own Stories</h1>
+    <div className="writer-container  mt-5">
+      <div className="text-center writer-heading mb-4">
+        <h1 className="display-4">Create Your Own Stories</h1>
         <p className="lead">
-          Welcome <strong>{name}</strong> to the Writer's Studio. Start writing
-          your story below:
+          Welcome <strong>{name}</strong> to the Writer's Studio. Start writing your story below:
         </p>
         <p>Your Email: <strong>{email}</strong></p>
       </div>
-        <input
-          placeholder="Enter the title of the story "
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          className="container"
-        />
-        <input
-          placeholder="Enter the description of the story "
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          className="container my-3"
-        />
-        <ReactQuill
-          theme="snow"
-          value={Text}
-          onChange={handleTextChange} // Update the Text state directly
-          placeholder="Start writing here..."
-          modules={modules}
-          formats={formats}
-          style={{ height: "300px", marginTop: "20px" }}
-        />
-        <div style={{ marginTop: "20px" }}>
-          <h3>Preview:</h3>
-          <div dangerouslySetInnerHTML={{ __html: Text }} />
-        </div>
+  
+      <input
+        placeholder="Enter the title of the story"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        className="container"
+      />
+      <input
+        placeholder="Enter the description of the story"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+        className="container my-3"
+      />
+  
+      <ReactQuill
+        theme="snow"
+        value={Text}
+        onChange={handleTextChange}
+        placeholder="Start writing here..."
+        modules={modules}
+        formats={formats}
+        style={{ height: "300px", marginTop: "20px" }}
+      />
+  
+      <div style={{ marginTop: "20px" }}>
+        <h3>Preview:</h3>
+        <div className="preview-box" dangerouslySetInnerHTML={{ __html: Text }} />
       </div>
-      <div>
-      <button onClick={handleSave}
-                disabled={Text.length === 0} 
-      className="btn btn-success mx-2">
+  
+      <div className="mt-4">
+        <button onClick={handleSave} disabled={Text.length === 0} className="btn btn-success mx-2">
           Save Story
         </button>
-        <button
-          disabled={Text.length === 0}
-          className="btn btn-primary mx-2 my-1"
-          onClick={handleUpClick}
-        >
-          Convert to uppercase
+        <button disabled={Text.length === 0} className="btn btn-primary mx-2 my-1" onClick={handleUpClick}>
+          Convert to Uppercase
         </button>
-        <button
-          disabled={Text.length === 0}
-          className="btn btn-primary mx-2 my-1"
-          onClick={handleLoClick}
-        >
+        <button disabled={Text.length === 0} className="btn btn-primary mx-2 my-1" onClick={handleLoClick}>
           Convert to Lowercase
         </button>
-        <button
-          disabled={Text.length === 0}
-          className="btn btn-primary mx-2 my-1"
-          onClick={handleClearText}
-        >
-          Clear text
+        <button disabled={Text.length === 0} className="btn btn-primary mx-2 my-1" onClick={handleClearText}>
+          Clear Text
         </button>
-        <button
-          disabled={Text.length === 0}
-          type="submit"
-          onClick={speak}
-          className="btn btn-warning mx-2 my-2"
-          id="toggle"
-        >
+        <button disabled={Text.length === 0} type="submit" onClick={speak} className="btn btn-warning mx-2 my-2" id="toggle">
           Speak
         </button>
-
-        <button
-          disabled={Text.length === 0}
-          className="btn btn-primary mx-2 my-1"
-          onClick={handleCopy}
-        >
-          Copy text
+        <button disabled={Text.length === 0} className="btn btn-primary mx-2 my-1" onClick={handleCopy}>
+          Copy Text
         </button>
-        <button
-          disabled={Text.length === 0}
-          className="btn btn-primary mx-2 my-1"
-          onClick={handleExtraSpaces}
-        >
-          Remove ExtraSpaces
+        <button disabled={Text.length === 0} className="btn btn-primary mx-2 my-1" onClick={handleExtraSpaces}>
+          Remove Extra Spaces
         </button>
-        <button
-          disabled={Text.length === 0}
-          className="btn btn-primary mx-2 my-1"
-          onClick={handleExtraLines}
-        >
+        <button disabled={Text.length === 0} className="btn btn-primary mx-2 my-1" onClick={handleExtraLines}>
           Remove Lines
         </button>
-
-        <div className="container my-3">
-  <h2>Your Text Summary</h2>
-  <p>
-    {
-      normal
-        .split(/\s+/)
-        .filter((element) => element.length !== 0).length
-    }{" "}
-    words and{" "}
-    {
-      normal.replace(/\s+/g, "").length // Remove spaces before counting characters
-    }{" "}
-    characters
-  </p>
-  <p>
-    {(
-      0.008 *
-      normal
-        .split(/\s+/)
-        .filter((element) => element.length !== 0).length
-    ).toFixed(2)}{" "}
-    minutes to read
-  </p>
-</div>
       </div>
-    </>
+  
+      <div className="container my-3">
+        <h2>Your Text Summary</h2>
+        <p>
+          {
+            normal
+              .split(/\s+/)
+              .filter((element) => element.length !== 0).length
+          } words and{" "}
+          {
+            normal.replace(/\s+/g, "").length
+          } characters
+        </p>
+        <p>
+          {
+            (
+              0.008 *
+              normal
+                .split(/\s+/)
+                .filter((element) => element.length !== 0).length
+            ).toFixed(2)
+          } minutes to read
+        </p>
+      </div>
+    </div>
+  </>
+  
+  
   );
 };
 
