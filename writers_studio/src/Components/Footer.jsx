@@ -40,12 +40,14 @@ const Footer = () => {
             </div>
             <div className="col-lg-3 col-sm-6">
               <h1 className="useful_text">Useful Link</h1>
-              <p className="dummy_text">
-                <a href="https://www.celtx.com" className="">Celtx</a>
-                <a href="Node.js">Node js </a>
-                <a href="https://reactjs.org">React js</a>
-                <a href="https://www.mongodb.com">MongoDB</a>
-              </p>
+             
+                <a href="https://www.celtx.com" style={{color:"white"}} >Celtx</a>
+                <br></br>
+                <a href="Node.js" style={{color:"white"}} >Node js </a>
+                <br></br>
+                <a href="https://reactjs.org" style={{color:"white"}} >React js</a>
+                <br></br>
+                <a href="https://www.mongodb.com" style={{color:"white"}} >MongoDB</a>
             </div>
             <div className="col-lg-3 col-sm-6">
               <h1 className="useful_text">Contact Us</h1>

@@ -186,6 +186,11 @@ const Stories = () => {
   const handleEdit = (storyId) => {
     navigate(`/editstory/${storyId}`); // Navigate to the edit story page
   };  
+  const convertHtmlToText = (html) => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+    return doc.body.textContent || "";
+  };
   return (
     <div className=" mt-5">
       <h1 className="h1 text-center mb-4" style={{ marginTop: "6rem" }}>
@@ -275,7 +280,8 @@ const Stories = () => {
       <div className="modal-body">
       <p><strong>Author:</strong> {selectedStory.author}</p>
                 <p><strong>Description:</strong> {selectedStory.description}</p>
-                <p><strong>Story:</strong> {selectedStory.story}</p>
+                <div className="preview-box" dangerouslySetInnerHTML={{ __html: selectedStory.story }} />
+
 
       </div>
       <div className="modal-footer">

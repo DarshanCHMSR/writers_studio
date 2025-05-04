@@ -113,7 +113,7 @@ const Creator = () => {
     const storyData = {
       title: title,
       description: description,
-      story:  normal, // Use the text from the editor
+      story:  Text, // Use the text from the editor
       author: name,
     };
 
