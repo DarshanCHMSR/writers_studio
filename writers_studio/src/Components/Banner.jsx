@@ -65,7 +65,7 @@ const Banner = () => {
               role="button"
               data-bs-slide="prev"
             >
-              <i class="fa fa-angle-left"></i>
+              <i className="fa fa-angle-left"></i>
 
             </a>
             <a
@@ -74,7 +74,7 @@ const Banner = () => {
               role="button"
               data-bs-slide="next"
             >
-                             <i class="fa fa-angle-right"></i>
+                             <i className="fa fa-angle-right"></i>
 
             </a>
           </div>
