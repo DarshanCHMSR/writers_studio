@@ -217,8 +217,7 @@ router.put(
     }
   }
 );
-// Route 8:downloading : get "/api/story/storypdf/:id". Login required
-
+// Route 8: Downloading: GET "/api/story/storypdf/:id". Login required
 router.get("/storypdf/:id", requiresignin, async (req, res) => {
   try {
     const story = await Story.findById(req.params.id);
@@ -226,9 +225,19 @@ router.get("/storypdf/:id", requiresignin, async (req, res) => {
       return res.status(404).send("Story not found");
     }
 
+    // Function to strip HTML tags and get plain text
+    const stripHtml = (html) => {
+      return html.replace(/<[^>]*>/g, ""); // Remove all HTML tags
+    };
+
+    const plainTextStory = stripHtml(story.story); // Convert HTML to plain text
+
     const doc = new PDFDocument();
     res.setHeader("Content-Type", "application/pdf");
-    res.setHeader("Content-Disposition", `attachment; filename=${story.title || "story"}.pdf`);
+    res.setHeader(
+      "Content-Disposition",
+      `attachment; filename=${story.title || "story"}.pdf`
+    );
 
     // Pipe the PDF to the response
     doc.pipe(res);
@@ -239,8 +248,8 @@ router.get("/storypdf/:id", requiresignin, async (req, res) => {
     doc.fontSize(12).text(`Author: ${story.author}`);
     doc.text(`Title: ${story.title}`);
     doc.text(`Description: ${story.description}`);
-    doc.text(`Story: ${story.story}`);
-    doc.text(`Created At: ${story.createdAt}`);
+    doc.text(`Story: ${plainTextStory}`); // Use plain text here
+    doc.text(`Created At: ${story.date}`);
     doc.moveDown();
 
     // Finalize the PDF
