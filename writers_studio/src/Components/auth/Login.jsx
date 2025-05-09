@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../../css/signup.css'; 
 import { useNavigate } from 'react-router-dom';
 import {url} from '../data-link/url'; // Import the URL from the data-link file
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -71,7 +72,12 @@ const Login = () => {
         </label>
 
         <button className="submit" type="submit">Submit</button>
-        <p className="signin">Do not have an account? <a href="/signup">Sign Up</a></p>
+        <p className="signin">Do not have an account? 
+          
+          <Link to="/signup">
+                  Sign Up
+                </Link>
+        </p>
       </form>
     </div>
   );

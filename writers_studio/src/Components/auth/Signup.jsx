@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import '../../css/signup.css'; 
+<<<<<<< HEAD
 import { useNavigate } from 'react-router-dom';
 import { url } from '../data-link/url'; // Import the URL from the data-link file
+=======
+import { useNavigate , Link } from 'react-router-dom';
+>>>>>>> 580e717b26b7335c7e3526d61491c73255a29a16
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -155,7 +159,11 @@ const SignUp = () => {
           Submit
         </button>
         <p className="signin">
-          Already have an account? <a href="/login">Login</a>
+          Already have an account? 
+<Link to="/login">
+                  Login
+                </Link>
+
         </p>
       </form>
     </div>
