@@ -56,19 +56,19 @@ const Footer = () => {
                   <li>
                     <a href="#">
                       <i className="fa fa-map-marker" aria-hidden="true"></i>
-                      <span className="padding_left_10">Address : Bangalore</span>
+                      <span className="padding_left_10">Address : Kadur</span>
                     </a>
                   </li>
                   <li>
                     <a href="#">
                       <i className="fa fa-phone" aria-hidden="true"></i>
-                      <span className="padding_left_10">Call : +91 00000 00000</span>
+                      <span className="padding_left_10">Call : +91 73383 16893</span>
                     </a>
                   </li>
                   <li>
                     <a href="#">
                       <i className="fa fa-envelope" aria-hidden="true"></i>
-                      <span className="padding_left_10">Email : demo@gmail.com</span>
+                      <span className="padding_left_10">Email : guru@gmail.com</span>
                     </a>
                   </li>
                 </ul>

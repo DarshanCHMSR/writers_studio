@@ -1,11 +1,12 @@
 import images from "../images/logo.webp";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation,useNavigate } from "react-router-dom";
 
 const NavBar = () => {
+  const navigate = useNavigate(); // Use useNavigate for programmatic navigation
   const location = useLocation(); // Track the current location
   const handleLogout = () => {
     localStorage.removeItem('auth-token');
-    window.location = "/login";
+    navigate("/login")
   }
 
   return (

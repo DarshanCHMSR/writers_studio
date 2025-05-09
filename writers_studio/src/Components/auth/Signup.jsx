@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../../css/signup.css'; 
 import { useNavigate } from 'react-router-dom';
+import { url } from '../data-link/url'; // Import the URL from the data-link file
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -23,6 +24,24 @@ const SignUp = () => {
     e.preventDefault();
     setError('');
 
+    // Validation for first name and last name length
+    if (formData.firstName.length < 3) {
+      setError('First name must be at least 3 characters long');
+      return;
+    }
+
+    if (formData.lastName.length < 3) {
+      setError('Last name must be at least 3 characters long');
+      return;
+    }
+
+    // Validation for password length
+    if (formData.password.length < 5) {
+      setError('Password must be at least 5 characters long');
+      return;
+    }
+
+    // Validation for matching passwords
     if (formData.password !== formData.cpassword) {
       setError('Passwords do not match');
       return;
