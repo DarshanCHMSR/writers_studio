@@ -225,14 +225,20 @@ router.get("/storypdf/:id", requiresignin, async (req, res) => {  try {    const
     const doc = new PDFDocument({ margin: 50 });
     res.setHeader("Content-Type", "application/pdf");    res.setHeader(      "Content-Disposition",      `attachment; filename=${story.title || "story"}.pdf`    );
     doc.pipe(res);
-    // Title Header    doc      .fillColor("#2E86C1")      .fontSize(24)      .text("Story Details", { align: "center", underline: true });
+    // Title Header 
+                                                                       doc      .fillColor("#2E86C1")      .fontSize(24)      .text("Story Details", { align: "center", underline: true });
     doc.moveDown();
-    // Author    doc      .fillColor("#1B4F72")      .fontSize(14)      .text("Author:", { continued: true })      .fillColor("black")      .text(` ${story.author || "Unknown"}`);
-    // Title    doc      .fillColor("#1B4F72")      .fontSize(14)      .text("Title:", { continued: true })      .fillColor("black")      .text(` ${story.title || "Untitled"}`);
-    // Description    doc      .fillColor("#1B4F72")      .fontSize(14)      .text("Description:", { continued: true })      .fillColor("black")      .text(` ${story.description || "No description"}`);
-    // Created At    doc      .fillColor("#1B4F72")      .fontSize(14)      .text("Created At:", { continued: true })      .fillColor("black")      .text(` ${story.date || "Unknown"}`);
+    // Author
+                                                                       doc      .fillColor("#1B4F72")      .fontSize(14)      .text("Author:", { continued: true })      .fillColor("black")      .text(` ${story.author || "Unknown"}`);
+    // Title 
+                                                                       doc      .fillColor("#1B4F72")      .fontSize(14)      .text("Title:", { continued: true })      .fillColor("black")      .text(` ${story.title || "Untitled"}`);
+    // Description   
+                                                                       doc      .fillColor("#1B4F72")      .fontSize(14)      .text("Description:", { continued: true })      .fillColor("black")      .text(` ${story.description || "No description"}`);
+    // Created At  
+                                                                       doc      .fillColor("#1B4F72")      .fontSize(14)      .text("Created At:", { continued: true })      .fillColor("black")      .text(` ${story.date || "Unknown"}`);
     doc.moveDown();
-    // Story Content    doc      .fillColor("#2E4053")      .fontSize(16)      .text("Story", { underline: true });
+    // Story Content 
+                                                                       doc      .fillColor("#2E4053")      .fontSize(16)      .text("Story", { underline: true });
     doc.moveDown(0.5);    doc      .font("Times-Roman")      .fontSize(12)      .fillColor("black")      .text(plainTextStory, {        align: "justify",        lineGap: 4,      });
     doc.end();  } catch (error) {    console.error("Error generating PDF:", error);    res.status(500).send("Failed to generate PDF");  }});
 
