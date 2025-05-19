@@ -218,47 +218,23 @@ router.put(
   }
 );
 // Route 8: Downloading: GET "/api/story/storypdf/:id". Login required
-router.get("/storypdf/:id", requiresignin, async (req, res) => {
-  try {
-    const story = await Story.findById(req.params.id);
-    if (!story) {
-      return res.status(404).send("Story not found");
-    }
 
-    // Function to strip HTML tags and get plain text
-    const stripHtml = (html) => {
-      return html.replace(/<[^>]*>/g, ""); // Remove all HTML tags
-    };
-
-    const plainTextStory = stripHtml(story.story); // Convert HTML to plain text
-
-    const doc = new PDFDocument();
-    res.setHeader("Content-Type", "application/pdf");
-    res.setHeader(
-      "Content-Disposition",
-      `attachment; filename=${story.title || "story"}.pdf`
-    );
-
-    // Pipe the PDF to the response
+router.get("/storypdf/:id", requiresignin, async (req, res) => {  try {    const story = await Story.findById(req.params.id);    if (!story) {      return res.status(404).send("Story not found");    }
+    const stripHtml = (html) => html.replace(/<[^>]*>/g, "");
+    const plainTextStory = stripHtml(story.story);
+    const doc = new PDFDocument({ margin: 50 });
+    res.setHeader("Content-Type", "application/pdf");    res.setHeader(      "Content-Disposition",      `attachment; filename=${story.title || "story"}.pdf`    );
     doc.pipe(res);
-
-    // Add content to the PDF
-    doc.fontSize(18).text("Story Details", { align: "center" });
+    // Title Header    doc      .fillColor("#2E86C1")      .fontSize(24)      .text("Story Details", { align: "center", underline: true });
     doc.moveDown();
-    doc.fontSize(12).text(`Author: ${story.author}`);
-    doc.text(`Title: ${story.title}`);
-    doc.text(`Description: ${story.description}`);
-    doc.text(`Story: ${plainTextStory}`); // Use plain text here
-    doc.text(`Created At: ${story.date}`);
+    // Author    doc      .fillColor("#1B4F72")      .fontSize(14)      .text("Author:", { continued: true })      .fillColor("black")      .text(` ${story.author || "Unknown"}`);
+    // Title    doc      .fillColor("#1B4F72")      .fontSize(14)      .text("Title:", { continued: true })      .fillColor("black")      .text(` ${story.title || "Untitled"}`);
+    // Description    doc      .fillColor("#1B4F72")      .fontSize(14)      .text("Description:", { continued: true })      .fillColor("black")      .text(` ${story.description || "No description"}`);
+    // Created At    doc      .fillColor("#1B4F72")      .fontSize(14)      .text("Created At:", { continued: true })      .fillColor("black")      .text(` ${story.date || "Unknown"}`);
     doc.moveDown();
-
-    // Finalize the PDF
-    doc.end();
-  } catch (error) {
-    console.error("Error generating PDF:", error);
-    res.status(500).send("Failed to generate PDF");
-  }
-});
+    // Story Content    doc      .fillColor("#2E4053")      .fontSize(16)      .text("Story", { underline: true });
+    doc.moveDown(0.5);    doc      .font("Times-Roman")      .fontSize(12)      .fillColor("black")      .text(plainTextStory, {        align: "justify",        lineGap: 4,      });
+    doc.end();  } catch (error) {    console.error("Error generating PDF:", error);    res.status(500).send("Failed to generate PDF");  }});
 
 // Route 9: Get the Story based on the id using : GET "/api/story/getstory/:id". Login required
 router.get("/getstory/:id", requiresignin, async (req, res) => {
