@@ -7,12 +7,24 @@
     .header-search {
         padding: 15px 0px;
     }
+    .about_section{
+        padding:0px;
+    }
+    .layout_padding{
+        padding:0px;
+    }
 }
 
 
 /*------------------------------------------------------------------- 767px x 599px ---------------------------------------------------------------------*/
 
 @media only screen and (min-width: 599px) and (max-width: 767px) {
+    .about_section{
+        padding:0px;
+    }
+    .layout_padding{
+        padding:0px;
+    }
     .logo {
         text-align: center;
     }
@@ -85,6 +97,12 @@
 /*------------------------------------------------------------------- 599px x 280px ---------------------------------------------------------------------*/
 
 @media only screen and (min-width: 280px) and (max-width: 599px) {
+    .about_section{
+        padding:0px;
+    }
+    .layout_padding{
+        padding:0px;
+    }
     .cart-content-right {
         padding-bottom: 5px;
     }
@@ -153,6 +171,12 @@
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
+    .about_section{
+        padding:0px;
+    }
+    .layout_padding{
+        padding:0px;
+    }
     #main_slider a.carousel-control-prev {
         top: 90%;
     }

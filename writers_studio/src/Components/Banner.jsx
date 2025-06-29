@@ -17,8 +17,8 @@ const Banner = () => {
                       <h1 className="outstanding_text">Dream Ink</h1>
                       <h1 className="coffee_text">Writers Studio</h1>
                       <p className="there_text">
-                        <strong>Craft Your Perfect Script with StoryForge – Where Creativity Meets Structure.</strong> 
-                        Where Creativity Meets Structure. Unleash your imagination with a platform designed specifically for screenwriters, offering intuitive tools for writing, formatting, and organizing your scripts effortlessly.                      </p>
+                        Craft Your Perfect Script with StoryForge – Where Creativity Meets Structure.
+                        Where Creativity Meets Structure. Unleash your imagination with a platform designed specifically for screenwriters.                     </p>
                       <div className="learnmore_bt">
                         
                         <Link to="/creator">
@@ -36,8 +36,8 @@ const Banner = () => {
                       <h1 className="outstanding_text">Dream Ink</h1>
                       <h1 className="coffee_text">Writers Studio</h1>
                       <p className="there_text">
-                        <strong>Real-time Collaboration | Auto-save & Version History | Professional Script Formatting"</strong>
-                        Write, edit, and collaborate seamlessly with others. Enjoy a user-friendly script editor that ensures your work is always perfectly formatted.</p>
+                       Real-time Collaboration | Auto-save & Version History | Professional Script Formatting"
+                        Write, edit, and collaborate seamlessly with others. Enjoy a user-friendly script editor that ensures your work is always formatted.</p>
                       <div className="learnmore_bt">
                        
  <Link to="/creator">
@@ -56,8 +56,8 @@ const Banner = () => {
                       <h1 className="outstanding_text">Dream Ink</h1>
                       <h1 className="coffee_text">Writers Studio</h1>
                       <p className="there_text">
-                        <strong>"Start Writing Today – Join for Free!"</strong>
-                        Whether you're a budding screenwriter or an experienced storyteller, StoryForge is here to help you bring your ideas to life. Sign up now and get started on your first script with all the tools you need at your fingertips
+                     "Start Writing Today – Join for Free!"
+                        Whether you're a budding screenwriter or an experienced storyteller, StoryForge is here to help you bring your ideas to life. Sign up now and get started on your first script.
                       </p>
                       <div className="learnmore_bt">
                        
